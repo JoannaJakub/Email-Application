@@ -6,7 +6,7 @@ import emailapp.repository.EmailRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 
 @Controller
 public class EmailApp {
@@ -19,10 +19,15 @@ public class EmailApp {
     }
 
     @RequestMapping("/")
-    @ResponseBody
-    public String createMail(Model model) {
+    public String landingPage(Model model) {
       /*  model.addAllAttributes("user", new Email());
         model.addAllAttributes("department", departmentRepository.findAll());*/
+        return "index";
+    }
+    @RequestMapping("/email")
+    public String createMail(Model model) {
+        model.addAllAttributes("user", new Email());
+        model.addAllAttributes("department", departmentRepository.findAll());
         return "email";
     }
 
