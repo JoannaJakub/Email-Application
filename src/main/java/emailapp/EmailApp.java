@@ -5,7 +5,11 @@ import emailapp.repository.DepartmentRepository;
 import emailapp.repository.EmailRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -20,15 +24,23 @@ public class EmailApp {
 
     @RequestMapping("/")
     public String landingPage(Model model) {
-      /*  model.addAllAttributes("user", new Email());
-        model.addAllAttributes("department", departmentRepository.findAll());*/
         return "index";
     }
+
     @RequestMapping("/email")
     public String createMail(Model model) {
-        model.addAllAttributes("user", new Email());
-        model.addAllAttributes("department", departmentRepository.findAll());
+        model.addAttribute("user", new Email());
+        model.addAttribute("department", departmentRepository.findAll());
         return "email";
     }
 
+    @PostMapping(value = "/emailSuccess")
+    public String processRegister(@Valid Email email, BindingResult result) {
+        if (result.hasErrors()) {
+            return "email";
+        } else {
+            emailRepository.save(email);
+        }
+        return "emailSuccess";
+    }
 }

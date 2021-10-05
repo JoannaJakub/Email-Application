@@ -36,23 +36,17 @@
                         <!-- Form -->
                         <h3>Form</h3>
 
-                        <form method="post" action="#">
+                        <form:form method="post" action="emailSuccess"  modelAttribute="user">
                             <div class="row gtr-uniform">
                                 <div class="col-6 col-12-xsmall">
-                                    <input type="text" name="demo-name" id="demo-name" value="" placeholder="Name"/>
+                                    <form:input type="text" name="name" id="name" value="" placeholder="Name" path="firstName"/>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
-                                    <input type="email" name="demo-email" id="demo-email" value="" placeholder="Email"/>
+                                    <form:input type="text" name="surname" id="surname" value="" placeholder="Surname" path="lastName"/>
                                 </div>
                                 <!-- Break -->
                                 <div class="col-12">
-                                    <select name="demo-category" id="demo-category">
-                                        <option value="">- Category -</option>
-                                        <option value="1">Manufacturing</option>
-                                        <option value="1">Shipping</option>
-                                        <option value="1">Administration</option>
-                                        <option value="1">Human Resources</option>
-                                    </select>
+                                    <form:select items="${department}" path="department" itemLabel="name" itemValue="id"/>
                                 </div>
                                 <!-- Break -->
                                 <div class="col-4 col-12-small">
@@ -84,7 +78,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </form>
+                        </form:form>
 
 
                     </div>
