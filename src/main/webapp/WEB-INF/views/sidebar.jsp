@@ -15,8 +15,8 @@
                 <h2>Menu</h2>
             </header>
             <ul>
-                <li><a href="index.jsp">Homepage</a></li>
-                <li><a href="generic.html">Generic</a></li>
+                <li><a href="<c:url value="/"/>">Homepage</a></li>
+                <li><a href="<c:url value="/email"/>">Email</a></li>
                 <li><a href="elements.html">Elements</a></li>
                 <li>
                     <span class="opener">Submenu</span>
