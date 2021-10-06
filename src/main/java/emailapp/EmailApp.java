@@ -38,7 +38,7 @@ public class EmailApp {
 
     @PostMapping(value = "/emailSuccess")
     public String processRegister(@Valid Email email, BindingResult result) {
-        email.setPassword(randomPasswordGenerator.generatePassword());
+            email.setPassword(randomPasswordGenerator.generatePassword());
             emailRepository.save(email);
 
         return "emailSuccess";
