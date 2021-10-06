@@ -1,10 +1,6 @@
 
 9
 	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-7
-pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
-W
-'src/main/java/emailapp/Application.java,7/f/7ff8a6f5d4e11c39c691feebee2082aa20468569
 {
 Ksrc/main/webapp/resources/distribution/assets/sass/components/_actions.scss,f/9/f9e5d540b4687781cb28c82103207b0d01400d11
 v
@@ -101,3 +97,12 @@ h
 8src/main/webapp/resources/distribution/assets/js/util.js,b/1/b1e730b3afec03ddf52e2384da10b6c655c6dc05
 Y
 )src/main/webapp/WEB-INF/views/scripts.jsp,e/8/e823f0dff6ad88259dcd79cdc7a75a4107215920
+W
+'src/main/webapp/WEB-INF/views/index.jsp,3/0/305b3bb8194d08e1e32b17ac5f1d53c1cf0118c1
+W
+'src/main/webapp/WEB-INF/views/email.jsp,9/4/948cbafbe009b77af338cbb3b983ff56cddf5add
+Y
+)src/main/webapp/WEB-INF/views/sidebar.jsp,a/f/afa7490a2bf35039ea31e567b406b17a2f7dbde2
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302

@@ -16,10 +16,12 @@ import javax.validation.Valid;
 public class EmailApp {
     public final EmailRepository emailRepository;
     public final DepartmentRepository departmentRepository;
+    public final RandomPasswordGenerator randomPasswordGenerator;
 
-    public EmailApp(EmailRepository emailRepository, DepartmentRepository departmentRepository) {
+    public EmailApp(EmailRepository emailRepository, DepartmentRepository departmentRepository, RandomPasswordGenerator randomPasswordGenerator) {
         this.emailRepository = emailRepository;
         this.departmentRepository = departmentRepository;
+        this.randomPasswordGenerator = randomPasswordGenerator;
     }
 
     @RequestMapping("/")
@@ -36,11 +38,9 @@ public class EmailApp {
 
     @PostMapping(value = "/emailSuccess")
     public String processRegister(@Valid Email email, BindingResult result) {
-        if (result.hasErrors()) {
-            return "email";
-        } else {
+        email.setPassword(randomPasswordGenerator.generatePassword());
             emailRepository.save(email);
-        }
+
         return "emailSuccess";
     }
 }
