@@ -56,12 +56,13 @@ public class EmailApp {
         model.addAttribute("userDetails", emailRepository.findTopByOrderByIdDesc());
         return "emailSuccess";
     }
-    /*@GetMapping("/emailSuccess")
-    public String showRegistrationForm(Model model) {
-        model.addAttribute("userDetails", emailRepository.findTopByOrderByIdDesc());
-        System.out.println(emailRepository.findTopByOrderByIdDesc());
-        return "emailSuccess";
-    }*/
+
+    @RequestMapping("/allUsers")
+    public String allUsers(Model model) {
+        model.addAttribute("users", emailRepository.findAll());
+        System.out.println(emailRepository.findAll());
+        return "allUsers";
+    }
 
 
 }
