@@ -24,7 +24,7 @@
             <!-- Content -->
             <section>
                 <header class="main">
-                    <h1> You have create email successfully!</h1>
+                    <h1> You have successfully created email!</h1>
                 </header>
 
                 <!-- Elements -->
@@ -33,12 +33,51 @@
 
                     <div class="col-6 col-12-medium">
 
-                        <!-- Form -->
-                        <h3>Form</h3>
+                        <!-- Table -->
+                        <h3>Table</h3>
 
-                        You have create email successfully!
-
-
+                        <h4>Default</h4>
+                        <div class="table-wrapper">
+                            <form:form items="${userDetails}" var="userDetails">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th><c:out value="${userDetails.firstName}"/></th>
+                                    <th>Price</th>
+                                </tr>
+                                </thead>
+                                <thead>
+                                <tr>
+                                    <th>Surname</th>
+                                    <th><c:out value="${userDetails.lastName}"/></th>
+                                    <th>Price</th>
+                                </tr>
+                                </thead>
+                                <thead>
+                                <tr>
+                                    <th>Mailbox capacity</th>
+                                    <th><c:out value="${userDetails.mailboxCapacity}"/></th>
+                                    <th>Price</th>
+                                </tr>
+                                </thead>
+                                <thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <th><c:out value="${userDetails.generatedEmail}"/></th>
+                                    <th>Price</th>
+                                </tr>
+                                </thead>
+                                <thead>
+                                <tr>
+                                    <th>Password</th>
+                                    <th><c:out value="${userDetails.password}"/></th>
+                                    <th>Price</th>
+                                </tr>
+                                </thead>
+                            </table>
+                            </form:form>
+                        </div>
                     </div>
                 </div>
 

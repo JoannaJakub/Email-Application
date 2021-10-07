@@ -6,6 +6,7 @@ import emailapp.repository.EmailRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -41,8 +42,10 @@ public class EmailApp {
         return "AZCompany";
     }
 
+
+
     @PostMapping(value = "/emailSuccess")
-    public String processRegister(@Valid Email email, BindingResult result) {
+    public String processRegister(@Valid Email email, BindingResult result, Model model) {
         email.setPassword(randomPasswordGenerator.generatePassword());
         String firstName = email.getFirstName().toLowerCase();
         String lastName = email.getLastName().toLowerCase();
@@ -50,7 +53,15 @@ public class EmailApp {
         String company = companyName().toLowerCase();
         email.setGeneratedEmail(firstName + "." + lastName + "@" + department + "." + company + ".com");
         emailRepository.save(email);
-
+        model.addAttribute("userDetails", emailRepository.findTopByOrderByIdDesc());
         return "emailSuccess";
     }
+    /*@GetMapping("/emailSuccess")
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("userDetails", emailRepository.findTopByOrderByIdDesc());
+        System.out.println(emailRepository.findTopByOrderByIdDesc());
+        return "emailSuccess";
+    }*/
+
+
 }

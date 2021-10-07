@@ -23,7 +23,6 @@ public class Email {
     private String password;
     private String generatedEmail;
     private int mailboxCapacity = 500;
-    private String alternateEmail;
 
     @ManyToOne(cascade ={CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
     @JoinTable(name = "user_department", joinColumns = @JoinColumn(name = "email_id"),
