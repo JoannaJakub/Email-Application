@@ -21,7 +21,8 @@ public class Email {
     private String firstName;
     private String lastName;
     private String password;
-    private int mailboxCapacity;
+    private String generatedEmail;
+    private int mailboxCapacity = 500;
     private String alternateEmail;
 
     @ManyToOne(cascade ={CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)

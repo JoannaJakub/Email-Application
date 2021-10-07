@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.Locale;
 
 
 @Controller
@@ -36,10 +37,19 @@ public class EmailApp {
         return "email";
     }
 
+    private String companyName() {
+        return "AZCompany";
+    }
+
     @PostMapping(value = "/emailSuccess")
     public String processRegister(@Valid Email email, BindingResult result) {
-            email.setPassword(randomPasswordGenerator.generatePassword());
-            emailRepository.save(email);
+        email.setPassword(randomPasswordGenerator.generatePassword());
+        String firstName = email.getFirstName().toLowerCase();
+        String lastName = email.getLastName().toLowerCase();
+        String department = email.getDepartment().getShortName().toLowerCase();
+        String company = companyName().toLowerCase();
+        email.setGeneratedEmail(firstName + "." + lastName + "@" + department + "." + company + ".com");
+        emailRepository.save(email);
 
         return "emailSuccess";
     }

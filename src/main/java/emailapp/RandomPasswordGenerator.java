@@ -26,10 +26,10 @@ public class RandomPasswordGenerator {
         List<Character> letters = new ArrayList<Character>();
         for (char c: allChars.toCharArray())
             letters.add(c);
-        Collections.shuffle(letters); // Inbuilt method to randomly shuffle a elements of a list
+        Collections.shuffle(letters);
         String password = "";
-        int maxLength = 20; // let consider max length is 20
-        int minLength = 9; // let consider min length is 9
+        int maxLength = 20;
+        int minLength = 9;
         for (int i = random.nextInt(maxLength - minLength) + minLength; i > 0; --i) {
             password += letters.get(random.nextInt(letters.size()));
         }
