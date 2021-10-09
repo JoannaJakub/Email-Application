@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -8,6 +9,13 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="<c:url value="../resources/distribution/assets/css/main.css"/>"/>
+		<sec:authorize url="/landingPage">
+			MAM DOSTĘP DO TEGO URL
+		</sec:authorize>
+		<%--<sec:authorize access="isAuthenticated()">
+			<p>Zalogowany jako: <sec:authentication property="username"/></p>
+			<p>Posiada role: <sec:authentication property="authorities"/></p>
+		</sec:authorize>--%>
 	</head>
 	<body class="is-preload">
 
