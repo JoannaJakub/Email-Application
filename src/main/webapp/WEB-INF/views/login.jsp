@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Elements - Editorial by HTML5 UP</title>
+    <title>Email creator</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="<c:url value="../resources/distribution/assets/css/main.css"/>"/>
@@ -24,7 +24,7 @@
             <!-- Content -->
             <section>
                 <header class="main">
-                    <h1>Email creator</h1>
+                    <h1>Login</h1>
                 </header>
 
                 <!-- Elements -->
@@ -34,7 +34,7 @@
                     <div class="col-6 col-12-medium">
 
                         <!-- Form -->
-                        <h3>Form</h3>
+
 
                         <form:form method="post" class="form-validate mb-4" authentication-failure-url="/login?error=true">
                             <div class="form-group">
@@ -64,7 +64,7 @@
     </div>
 
     <!-- Sidebar -->
-    <%@ include file="sidebar.jsp" %>
+
 
 </div>
 

@@ -25,8 +25,12 @@ public class EmailApp {
         this.departmentRepository = departmentRepository;
         this.randomPasswordGenerator = randomPasswordGenerator;
     }
-
     @RequestMapping("/")
+    public String login(Model model) {
+        return "login";
+    }
+
+    @RequestMapping("/landing page")
     public String landingPage(Model model) {
         return "index";
     }
