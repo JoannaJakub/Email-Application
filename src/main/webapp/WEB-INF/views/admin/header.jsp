@@ -1,7 +1,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!-- Header -->
 <header id="header">
-    <a href="index.jsp" class="logo"><strong>Email</strong> creator</a>
+    <a href="landingPage.jsp" class="logo"><strong>Email</strong> creator</a>
     <ul class="icons">
         <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
         <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
