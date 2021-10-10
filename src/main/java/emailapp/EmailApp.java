@@ -1,15 +1,14 @@
 package emailapp;
 
 import emailapp.model.Email;
+import emailapp.model.User;
 import emailapp.repository.DepartmentRepository;
 import emailapp.repository.EmailRepository;
+import emailapp.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -19,27 +18,39 @@ public class EmailApp {
     public final EmailRepository emailRepository;
     public final DepartmentRepository departmentRepository;
     public final RandomPasswordGenerator randomPasswordGenerator;
+    private final UserService userService;
 
-    public EmailApp(EmailRepository emailRepository, DepartmentRepository departmentRepository, RandomPasswordGenerator randomPasswordGenerator) {
+    public EmailApp(EmailRepository emailRepository, DepartmentRepository departmentRepository, RandomPasswordGenerator randomPasswordGenerator, UserService userService) {
         this.emailRepository = emailRepository;
         this.departmentRepository = departmentRepository;
         this.randomPasswordGenerator = randomPasswordGenerator;
+        this.userService = userService;
     }
-    @GetMapping("/login")
+    @GetMapping("/")
     public String login() {
-        return "login";
+        return "main/login";
+    }
+
+    @GetMapping("/create-user")
+    @ResponseBody
+    public String createUser() {
+        User user = new User();
+        user.setUsername("admin");
+        user.setPassword("admin");
+        userService.saveUser(user);
+        return "admin";
     }
 
     @RequestMapping("/landingPage")
     public String landingPage(Model model) {
-        return "index";
+        return "admin/landingPage";
     }
 
     @RequestMapping("/email")
     public String createMail(Model model) {
         model.addAttribute("user", new Email());
         model.addAttribute("department", departmentRepository.findAll());
-        return "email";
+        return "admin/email";
     }
 
     private String companyName() {
@@ -58,14 +69,14 @@ public class EmailApp {
         email.setGeneratedEmail(firstName + "." + lastName + "@" + department + "." + company + ".com");
         emailRepository.save(email);
         model.addAttribute("userDetails", emailRepository.findTopByOrderByIdDesc());
-        return "emailSuccess";
+        return "admin/emailSuccess";
     }
 
     @RequestMapping("/allUsers")
     public String allUsers(Model model) {
         model.addAttribute("users", emailRepository.findAll());
         System.out.println(emailRepository.findAll());
-        return "allUsers";
+        return "admin/allUsers";
     }
 
 

@@ -1,5 +1,6 @@
 package emailapp;
 
+import emailapp.service.SpringDataUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,19 +15,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/view/**").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers("/admin/**").hasAnyAuthority("ADMIN", "USER")
                 .and().formLogin()
-                .loginPage("/login").loginProcessingUrl("/login")
+                .loginPage("/")
                 .usernameParameter("username")
                 .defaultSuccessUrl("/landingPage")
-                .failureUrl("/login?error=true")
-                .and().logout().logoutSuccessUrl("/login")
-                .permitAll();
+                .failureUrl("/?error=true")
+                .permitAll()
+                .and()
+                .logout().logoutSuccessUrl("/")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .and().exceptionHandling().accessDeniedPage("/accessDenied");
         //
     }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+    @Bean
+    public SpringDataUserDetailsService customUserDetailsService() {
+        return new SpringDataUserDetailsService();
     }
 }

@@ -1,4 +1,4 @@
-package emailapp;
+package emailapp.service;
 
 import emailapp.model.User;
 
