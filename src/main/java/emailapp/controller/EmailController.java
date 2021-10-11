@@ -7,6 +7,8 @@ import emailapp.repository.EmailRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -48,11 +50,21 @@ public class EmailController {
         return "admin/emailSuccess";
     }
 
-    @RequestMapping("/allUsers")
+    @RequestMapping("/allEmails")
     public String allUsers(Model model) {
         model.addAttribute("users", emailRepository.findAll());
-        System.out.println(emailRepository.findAll());
-        return "admin/allUsers";
+        return "admin/allEmails";
+    }
+
+    @RequestMapping("/emailConfirmDelete")
+    public String emailConfirmDelete() {
+        return "admin/emailConfirmDelete";
+    }
+
+    @GetMapping(value = {"/emailDelete/{id}"})
+    public String emailDelete(@PathVariable long id) {
+        emailRepository.deleteById(id);
+        return "redirect:/allEmails";
     }
 
 }
