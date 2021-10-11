@@ -24,7 +24,7 @@ public class Email {
     private String generatedEmail;
     private int mailboxCapacity = 500;
 
-    @ManyToOne(cascade ={CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
+    @ManyToOne(cascade ={CascadeType.PERSIST, CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinTable(name = "user_department", joinColumns = @JoinColumn(name = "email_id"),
             inverseJoinColumns = @JoinColumn(name = "department_id"))
     private Department department;
