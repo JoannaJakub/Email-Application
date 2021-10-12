@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 public class EmailController {
@@ -65,6 +66,30 @@ public class EmailController {
     public String emailDelete(@PathVariable long id) {
         emailRepository.deleteById(id);
         return "redirect:/allEmails";
+    }
+
+    @GetMapping(value = {"/emailEdit/{id}"})
+    public String emilEditForm(@PathVariable long id, Model model) {
+        model.addAttribute("userEdit", emailRepository.findById(id));
+        model.addAttribute("department", departmentRepository.findAll());
+
+        return "admin/emailEdit";
+    }
+
+    @PostMapping(value = {"emailEdit/{id}"})
+    public String emilEditSave(@Valid Email email, BindingResult result) {
+
+        emailRepository.save(email);
+
+        return "redirect:/emailConfirmEditing/{id}";
+    }
+
+    @RequestMapping("/emailConfirmEditing/{id}")
+    public String emailConfirmEditing(@PathVariable long id, Model model) {
+        Optional<Email> email = emailRepository.findById(id);
+        model.addAttribute("emailConfirmEdit", email);
+
+        return "admin/emailConfirmEdit";
     }
 
 }
