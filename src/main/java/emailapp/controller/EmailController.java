@@ -77,10 +77,8 @@ public class EmailController {
     }
 
     @PostMapping(value = {"emailEdit/{id}"})
-    public String emilEditSave(@Valid Email email, BindingResult result) {
-
+    public String emilEditSave(@Valid Email email) {
         emailRepository.save(email);
-
         return "redirect:/emailConfirmEditing/{id}";
     }
 
@@ -88,7 +86,6 @@ public class EmailController {
     public String emailConfirmEditing(@PathVariable long id, Model model) {
         Optional<Email> email = emailRepository.findById(id);
         model.addAttribute("emailConfirmEdit", email);
-
         return "admin/emailConfirmEdit";
     }
 

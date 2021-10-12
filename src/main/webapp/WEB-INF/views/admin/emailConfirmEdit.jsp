@@ -36,26 +36,17 @@
                         <!-- Form -->
                         <h3>Form</h3>
 
-                        <form:form method="post"   modelAttribute="userEdit">
+                        <form:form method="post" action="emailConfirmEditing"  modelAttribute="emailConfirmEdit">
                             <div class="row gtr-uniform">
                                 <div class="col-6 col-12-xsmall">
-                                    <form:input type="text" name="name" id="name" value="" placeholder="Name" path="firstName"/>
+                                    <c:out value="${id}" />
                                 </div>
                                 <div class="col-6 col-12-xsmall">
-                                    <form:input type="text" name="surname" id="surname" value="" placeholder="Surname" path="lastName"/>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <form:input type="text" name="password" id="password" value="" placeholder="password" path="password"/>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <form:input type="text" name="generatedEmail" id="generatedEmail" value="" placeholder="password" path="generatedEmail"/>
-                                </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <form:input type="text" name="mailboxCapacity" id="mailboxCapacity" value="" placeholder="mailboxCapacity" path="mailboxCapacity"/>
+                                    <c:out  value="${emailConfirmEdit}" />
                                 </div>
                                 <!-- Break -->
                                 <div class="col-12">
-                                    <form:select items="${department}" path="department" itemLabel="name" itemValue="id"/>
+                                    <c:out value="${emailConfirmEdit}"/>
                                 </div>
                                 <!-- Break -->
                                 <div class="col-4 col-12-small">
