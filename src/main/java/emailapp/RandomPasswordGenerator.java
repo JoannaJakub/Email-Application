@@ -33,8 +33,6 @@ public class RandomPasswordGenerator {
         for (int i = random.nextInt(maxLength - minLength) + minLength; i > 0; --i) {
             password += letters.get(random.nextInt(letters.size()));
         }
-
-        System.out.print("Password: " + password); // The size of the password is random
         return password;
     }
 
