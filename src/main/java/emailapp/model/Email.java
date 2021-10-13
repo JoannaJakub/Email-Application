@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -24,7 +26,8 @@ public class Email {
     private String generatedEmail;
     private int mailboxCapacity = 500;
 
-    @ManyToOne(cascade ={CascadeType.PERSIST, CascadeType.ALL}, fetch = FetchType.EAGER)
+    @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinTable(name = "user_department", joinColumns = @JoinColumn(name = "email_id"),
             inverseJoinColumns = @JoinColumn(name = "department_id"))
     private Department department;

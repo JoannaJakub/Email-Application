@@ -44,6 +44,7 @@
                                     <th>Password</th>
                                     <th>Delete</th>
                                     <th>Edit</th>
+                                    <th>Generate new password</th>
 
                                 </tr>
                                 </thead>
@@ -58,6 +59,7 @@
                                     <td><c:out value="${users.password}"/></td>
                                     <td><a href="<c:url value="/emailConfirmDelete/?id=${users.id}"/>">Delete</a></td>
                                     <td><a href="<c:url value="/emailEdit/${users.id}"/>">Edit</a></td>
+                                    <td><a href="<c:url value="/generateNewPassword/${users.id}"/>">New password</a></td>
 
                                 </thead>
                                 </c:forEach>
