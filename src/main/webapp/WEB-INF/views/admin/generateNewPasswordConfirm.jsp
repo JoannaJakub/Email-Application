@@ -24,7 +24,7 @@
             <!-- Content -->
             <section>
                 <header class="main">
-                    <h1>Generate new password</h1>
+                    <h1>New password</h1>
                 </header>
 
                 <!-- Elements -->
@@ -36,21 +36,20 @@
                         <!-- Form -->
                         <h3>Form</h3>
 
-                        <form:form method="post"   modelAttribute="generateNewPassword">
+                        <form:form items="${newPassword}" var="newPassword">
                             <div class="row gtr-uniform">
                                 <div class="col-6 col-12-xsmall">
-                                    <form:hidden path="firstName"/>
-                                    <form:hidden path="lastName"/>
-                                    <form:hidden path="generatedEmail"/>
-                                    <form:hidden path="mailboxCapacity"/>
-                                    <c:out value="${generateNewPassword}"/>
+                                    <c:out value="${newPassword.firstName}"/>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
-                                    <c:out value="${generateNewPassword}"/>
+                                    <c:out value="${newPassword.lastName}"/>
                                 </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <form:input type="text" name="password" id="password" value="" placeholder="password" path="password"/>
-                                </div>
+                                <tr>
+                                    <div class="col-12">
+                                        <td>New Password</td>
+                                        <c:out value="${newPassword.password}"/>
+                                    </div>
+                                </tr>
                                 <!-- Break -->
                                 <div class="col-4 col-12-small">
                                     <input type="radio" id="demo-priority-low" name="demo-priority" checked>

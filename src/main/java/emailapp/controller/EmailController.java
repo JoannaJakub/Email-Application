@@ -108,7 +108,12 @@ public class EmailController {
 
     @RequestMapping("/generateNewPasswordConfirm/{id}")
     public String generateNewPasswordConfirm(@PathVariable long id, Model model) {
-        model.addAttribute("newPassword", emailRepository.findById(id));
+        Optional<Email> email = emailRepository.findById(id);
+        if (email.isPresent()) {
+            model.addAttribute("newPassword", email.get());
+        } else {
+            return "admin/adminError";
+        }
         return "admin/generateNewPasswordConfirm";
     }
 }
