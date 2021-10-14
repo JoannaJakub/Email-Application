@@ -48,7 +48,7 @@
                                     <form:input type="text" name="password" id="password" value="" placeholder="password" path="password"/>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
-                                    <form:input type="text" name="generatedEmail" id="generatedEmail" value="" placeholder="password" path="generatedEmail"/>
+                                    <form:input type="text" name="generatedEmail" id="generatedEmail" value="" placeholder="generatedEmail" path="generatedEmail"/>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
                                     <form:input type="text" name="mailboxCapacity" id="mailboxCapacity" value="" placeholder="mailboxCapacity" path="mailboxCapacity"/>

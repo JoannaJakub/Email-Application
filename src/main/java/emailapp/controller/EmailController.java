@@ -79,14 +79,17 @@ public class EmailController {
     @PostMapping(value = {"emailEdit/{id}"})
     public String emilEditSave(@Valid Email email) {
         emailRepository.save(email);
-        System.out.println(email);
         return "redirect:/emailConfirmEditing/{id}";
     }
 
     @RequestMapping("/emailConfirmEditing/{id}")
     public String emailConfirmEditing(@PathVariable long id, Model model) {
         Optional<Email> email = emailRepository.findById(id);
-        model.addAttribute("emailConfirmEdit", email);
+        if (email.isPresent()) {
+            model.addAttribute("emailConfirmEdit", email.get());
+        } else {
+            return "admin/adminError";
+        }
         return "admin/emailConfirmEdit";
     }
 
@@ -98,14 +101,14 @@ public class EmailController {
 
     @PostMapping(value = {"generateNewPassword/{id}"})
     public String generateNewPasswordSave(@Valid Email email) {
-       email.setPassword(randomPasswordGenerator.generatePassword());
+        email.setPassword(randomPasswordGenerator.generatePassword());
         emailRepository.save(email);
         return "redirect:/generateNewPasswordConfirm/{id}";
     }
+
     @RequestMapping("/generateNewPasswordConfirm/{id}")
     public String generateNewPasswordConfirm(@PathVariable long id, Model model) {
-        Optional<Email> email = emailRepository.findById(id);
-        model.addAttribute("generateNewPassword", email);
+        model.addAttribute("newPassword", emailRepository.findById(id));
         return "admin/generateNewPasswordConfirm";
     }
 }

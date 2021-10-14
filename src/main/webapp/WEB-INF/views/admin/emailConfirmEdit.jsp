@@ -24,7 +24,7 @@
             <!-- Content -->
             <section>
                 <header class="main">
-                    <h1>Email edit</h1>
+                    <h1>User has been changed!</h1>
                 </header>
 
                 <!-- Elements -->
@@ -36,45 +36,49 @@
                         <!-- Form -->
                         <h3>Form</h3>
 
-                        <form:form method="post" action="emailConfirmEditing"  modelAttribute="emailConfirmEdit">
+                        <form:form method="post" items="${emailConfirmEditing}" var="emailConfirmEdit">
                             <div class="row gtr-uniform">
+                                <tr>
                                 <div class="col-6 col-12-xsmall">
+                                    <td>ID</td>
                                     <c:out value="${id}" />
                                 </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <c:out  value="${emailConfirmEdit}" />
-                                </div>
-                                <!-- Break -->
+                                </tr>
+                                <tr>
                                 <div class="col-12">
-                                    <c:out value="${emailConfirmEdit}"/>
+                                    <td>Name</td>
+                                    <c:out value="${emailConfirmEdit.firstName}"/>
                                 </div>
-                                <!-- Break -->
-                                <div class="col-4 col-12-small">
-                                    <input type="radio" id="demo-priority-low" name="demo-priority" checked>
-                                    <label for="demo-priority-low">Low</label>
+                                </tr>
+                                <tr>
+                                <div class="col-12">
+                                    <td>Surname</td>
+                                    <c:out value="${emailConfirmEdit.lastName}"/>
                                 </div>
-                                <div class="col-4 col-12-small">
-                                    <input type="radio" id="demo-priority-normal" name="demo-priority">
-                                    <label for="demo-priority-normal">Normal</label>
-                                </div>
-                                <div class="col-4 col-12-small">
-                                    <input type="radio" id="demo-priority-high" name="demo-priority">
-                                    <label for="demo-priority-high">High</label>
-                                </div>
-                                <!-- Break -->
-                                <div class="col-6 col-12-small">
-                                    <input type="checkbox" id="demo-copy" name="demo-copy">
-                                    <label for="demo-copy">Email me a copy</label>
-                                </div>
-                                <div class="col-6 col-12-small">
-                                    <input type="checkbox" id="demo-human" name="demo-human" checked>
-                                    <label for="demo-human">I am a human</label>
-                                </div>
+                                </tr>
+                                <tr>
+                                    <div class="col-12">
+                                        <td>Email</td>
+                                        <c:out value="${emailConfirmEdit.generatedEmail}"/>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="col-12">
+                                        <td>Password</td>
+                                        <c:out value="${emailConfirmEdit.password}"/>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="col-12">
+                                        <td>Mailbox capcity</td>
+                                        <c:out value="${emailConfirmEdit.mailboxCapacity}"/>
+                                    </div>
+                                </tr>
+
                                 <!-- Break -->
                                 <div class="col-12">
                                     <ul class="actions">
-                                        <li><input type="submit" value="Send Message" class="primary"/></li>
-                                        <li><input type="reset" value="Reset"/></li>
+
                                     </ul>
                                 </div>
                             </div>
