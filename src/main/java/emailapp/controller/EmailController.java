@@ -31,7 +31,7 @@ public class EmailController {
     public String createMail(Model model) {
         model.addAttribute("user", new Email());
         model.addAttribute("department", departmentRepository.findAll());
-        return "admin/email";
+        return "admin/email/email";
     }
 
     private String companyName() {
@@ -48,18 +48,18 @@ public class EmailController {
         email.setGeneratedEmail(firstName + "." + lastName + "@" + department + "." + company + ".com");
         emailRepository.save(email);
         model.addAttribute("userDetails", emailRepository.findTopByOrderByIdDesc());
-        return "admin/emailSuccess";
+        return "admin/email/emailSuccess";
     }
 
     @RequestMapping("/allEmails")
     public String allUsers(Model model) {
         model.addAttribute("users", emailRepository.findAll());
-        return "admin/allEmails";
+        return "admin/email/allEmails";
     }
 
     @RequestMapping("/emailConfirmDelete")
     public String emailConfirmDelete() {
-        return "admin/emailConfirmDelete";
+        return "admin/email/emailConfirmDelete";
     }
 
     @GetMapping(value = {"/emailDelete/{id}"})
@@ -73,7 +73,7 @@ public class EmailController {
         model.addAttribute("userEdit", emailRepository.findById(id));
         model.addAttribute("department", departmentRepository.findAll());
 
-        return "admin/emailEdit";
+        return "admin/email/emailEdit";
     }
 
     @PostMapping(value = {"emailEdit/{id}"})
@@ -88,15 +88,15 @@ public class EmailController {
         if (email.isPresent()) {
             model.addAttribute("emailConfirmEdit", email.get());
         } else {
-            return "admin/adminError";
+            return "admin/email/adminError";
         }
-        return "admin/emailConfirmEdit";
+        return "admin/email/emailConfirmEdit";
     }
 
     @GetMapping(value = {"/generateNewPassword/{id}"})
     public String generateNewPasswordForm(@PathVariable long id, Model model) {
         model.addAttribute("generateNewPassword", emailRepository.findById(id));
-        return "admin/generateNewPassword";
+        return "admin/email/generateNewPassword";
     }
 
     @PostMapping(value = {"generateNewPassword/{id}"})
@@ -112,8 +112,8 @@ public class EmailController {
         if (email.isPresent()) {
             model.addAttribute("newPassword", email.get());
         } else {
-            return "admin/adminError";
+            return "admin/email/adminError";
         }
-        return "admin/generateNewPasswordConfirm";
+        return "admin/email/generateNewPasswordConfirm";
     }
 }

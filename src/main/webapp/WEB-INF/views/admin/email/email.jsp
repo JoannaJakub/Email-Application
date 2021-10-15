@@ -19,12 +19,12 @@
         <div class="inner">
 
             <!-- Header -->
-            <%@ include file="header.jsp" %>
+            <%@ include file="../header.jsp" %>
 
             <!-- Content -->
             <section>
                 <header class="main">
-                    <h1>Generate new password</h1>
+                    <h1>Email creator</h1>
                 </header>
 
                 <!-- Elements -->
@@ -36,20 +36,17 @@
                         <!-- Form -->
                         <h3>Form</h3>
 
-                        <form:form method="post"   modelAttribute="generateNewPassword">
+                        <form:form method="post" action="emailSuccess"  modelAttribute="user">
                             <div class="row gtr-uniform">
                                 <div class="col-6 col-12-xsmall">
-                                    <form:hidden path="firstName"/>
-                                    <form:hidden path="lastName"/>
-                                    <form:hidden path="generatedEmail"/>
-                                    <form:hidden path="mailboxCapacity"/>
-                                    <c:out value="${generateNewPassword}"/>
+                                    <form:input type="text" name="name" id="name" value="" placeholder="Name" path="firstName"/>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
-                                    <c:out value="${generateNewPassword}"/>
+                                    <form:input type="text" name="surname" id="surname" value="" placeholder="Surname" path="lastName"/>
                                 </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <form:input type="text" name="password" id="password" value="" placeholder="password" path="password"/>
+                                <!-- Break -->
+                                <div class="col-12">
+                                    <form:select items="${department}" path="department" itemLabel="name" itemValue="id"/>
                                 </div>
                                 <!-- Break -->
                                 <div class="col-4 col-12-small">
@@ -93,12 +90,12 @@
     </div>
 
     <!-- Sidebar -->
-    <%@ include file="sidebar.jsp" %>
+    <%@ include file="../sidebar.jsp" %>
 
 </div>
 
 <!-- Scripts -->
-<%@ include file="scripts.jsp" %>
+<%@ include file="../scripts.jsp" %>
 
 </body>
 </html>

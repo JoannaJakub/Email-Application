@@ -19,7 +19,7 @@
         <div class="inner">
 
             <!-- Header -->
-            <%@ include file="header.jsp" %>
+            <%@ include file="../header.jsp" %>
 
             <!-- Content -->
             <section>
@@ -94,12 +94,12 @@
     </div>
 
     <!-- Sidebar -->
-    <%@ include file="sidebar.jsp" %>
+    <%@ include file="../sidebar.jsp" %>
 
 </div>
 
 <!-- Scripts -->
-<%@ include file="scripts.jsp" %>
+<%@ include file="../scripts.jsp" %>
 
 </body>
 </html>
