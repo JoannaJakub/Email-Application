@@ -1,19 +1,47 @@
 package emailapp.controller;
 
+import emailapp.model.Email;
+import emailapp.model.User;
+import emailapp.repository.EmailRepository;
+import emailapp.repository.RoleRepository;
 import emailapp.repository.UserRepository;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 public class UsersController {
     public final UserRepository userRepository;
+    public final EmailRepository emailRepository;
+    public final RoleRepository roleRepository;
 
-    public UsersController(UserRepository userRepository) {
+    public UsersController(UserRepository userRepository, EmailRepository emailRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
+        this.emailRepository = emailRepository;
+        this.roleRepository = roleRepository;
     }
 
-    @RequestMapping("/users")
-    public String allUsers(Model model) {
-        model.addAttribute("allUsers", userRepository.findAll());
-        return "admin/users/users";
+    @RequestMapping("/allUsers")
+    public String allUsersAdmin(Model model) {
+        model.addAttribute("allUsers", emailRepository.findAll());
+        return "admin/user/allUsers";
     }
+
+    @RequestMapping("/addUser")
+    public String createUser(Model model) {
+        model.addAttribute("user", new Email());
+        model.addAttribute("role", roleRepository.findAll());
+        return "admin/user/addUser";
+    }
+
+
+    @PostMapping(value = "/addUserSuccess")
+    public String addUserSuccess(@Valid User user, BindingResult result, Model model) {
+
+        userRepository.save(user);
+        return "admin/user/userSuccess";
+    }
+
 }

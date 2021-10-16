@@ -18,6 +18,7 @@
                 <li><a href="<c:url value="/"/>">Homepage</a></li>
                 <li><a href="<c:url value="/email"/>">Email</a></li>
                 <li><a href="<c:url value="/allEmails"/>">All emails</a></li>
+                <li><a href="<c:url value="/allUsers"/>">All users</a></li>
                 <li>
                     <span class="opener">Submenu</span>
                     <ul>
@@ -27,7 +28,6 @@
                         <li><a href="#">Feugiat Veroeros</a></li>
                     </ul>
                 </li>
-                <li><a href="<c:url value="/users"/>">Users</a></li>
                 <li><a href="#">Adipiscing</a></li>
                 <li>
                     <span class="opener">Another Submenu</span>
