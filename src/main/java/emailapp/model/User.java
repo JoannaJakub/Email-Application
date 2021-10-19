@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -28,8 +26,7 @@ public class User implements Serializable {
     private String firstName;
     private String lastName;
     private boolean enabled;
-    @ManyToMany
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToMany(cascade ={CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> role;
