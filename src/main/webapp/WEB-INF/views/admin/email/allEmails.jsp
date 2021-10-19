@@ -42,6 +42,7 @@
                                     <th>Mailbox capacity</th>
                                     <th>Email</th>
                                     <th>Password</th>
+                                    <th>Department</th>
                                     <th>Delete</th>
                                     <th>Edit</th>
                                     <th>Generate new password</th>
@@ -57,6 +58,7 @@
                                     <td><c:out value="${users.mailboxCapacity}"/></td>
                                     <td><c:out value="${users.generatedEmail}"/></td>
                                     <td><c:out value="${users.password}"/></td>
+                                    <td><c:out value="${users.department.name}"/></td>
                                     <td><a href="<c:url value="/emailConfirmDelete/?id=${users.id}"/>">Delete</a></td>
                                     <td><a href="<c:url value="/emailEdit/${users.id}"/>">Edit</a></td>
                                     <td><a href="<c:url value="/generateNewPassword/${users.id}"/>">New password</a></td>

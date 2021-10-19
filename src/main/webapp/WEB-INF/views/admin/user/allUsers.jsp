@@ -42,13 +42,14 @@
                                     <th>Username</th>
                                     <th>Password</th>
                                     <th>Enabled</th>
+                                    <th>Role</th>
                                     <th>Delete</th>
                                     <th>Edit</th>
                                     <th>Generate new password</th>
 
                                 </tr>
                                 </thead>
-                                <c:forEach items="${allUsers}" var="allUsers">
+                                <c:forEach items="${allUsers1}" var="allUsers">
                                 <thead>
 
                                     <td><c:out value="${allUsers.id}"/></td>
@@ -57,6 +58,7 @@
                                     <td><c:out value="${allUsers.username}"/></td>
                                     <td><c:out value="${allUsers.password}"/></td>
                                     <td><c:out value="${allUsers.enabled}"/></td>
+                                    <td><c:out value="${allUsers.role}"/></td>
                                     <td><a href="<c:url value="/usersConfirmDelete/?id=${allUsers.id}"/>">Delete</a></td>
                                     <td><a href="<c:url value="/usersEdit/${allUsers.id}"/>">Edit</a></td>
                                     <td><a href="<c:url value="/usersGenerateNewPassword/${allUsers.id}"/>">New password</a></td>
