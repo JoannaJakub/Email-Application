@@ -30,18 +30,19 @@
                     <div class="col-6 col-12-medium">
 
                         <!-- Table -->
-                        <h3>Users</h3>
+                        <h3></h3>
                         <h1>Are you sure of removing user?</h1>
                         <div class="form-group row">
                             <div class="col-sm-9 ml-auto">
                                 <a href="<c:url value="/allEmails"/>"
-                                   class="btn btn-secondary">NO</a>
+                                   class="button large" type="submit" >NO</a>
                                 <a href="<c:url value="/emailDelete/${param.id}"/>"
-                                   class="btn btn-primary">YES, delete email</a>
+                                   class="button primary large" >YES, delete email</a>
                             </div>
                         </div>
 
                     </div>
+
                 </div>
             </section>
 

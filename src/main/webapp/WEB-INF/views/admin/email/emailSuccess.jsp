@@ -34,9 +34,9 @@
                     <div class="col-6 col-12-medium">
 
                         <!-- Table -->
-                        <h3>Table</h3>
+                        <h3></h3>
 
-                        <h4>Default</h4>
+                        <h4></h4>
                         <div class="table-wrapper">
                             <form:form items="${userDetails}" var="userDetails">
                             <table>
@@ -44,35 +44,36 @@
                                 <tr>
                                     <th>Name</th>
                                     <th><c:out value="${userDetails.firstName}"/></th>
-                                    <th>Price</th>
                                 </tr>
                                 </thead>
                                 <thead>
                                 <tr>
                                     <th>Surname</th>
                                     <th><c:out value="${userDetails.lastName}"/></th>
-                                    <th>Price</th>
                                 </tr>
                                 </thead>
                                 <thead>
                                 <tr>
                                     <th>Mailbox capacity</th>
                                     <th><c:out value="${userDetails.mailboxCapacity}"/></th>
-                                    <th>Price</th>
                                 </tr>
                                 </thead>
                                 <thead>
                                 <tr>
                                     <th>Email</th>
                                     <th><c:out value="${userDetails.generatedEmail}"/></th>
-                                    <th>Price</th>
                                 </tr>
                                 </thead>
                                 <thead>
                                 <tr>
                                     <th>Password</th>
                                     <th><c:out value="${userDetails.password}"/></th>
-                                    <th>Price</th>
+                                </tr>
+                                </thead>
+                                <thead>
+                                <tr>
+                                    <th>Department</th>
+                                    <th><c:out value="${userDetails.department.name}"/></th>
                                 </tr>
                                 </thead>
                             </table>

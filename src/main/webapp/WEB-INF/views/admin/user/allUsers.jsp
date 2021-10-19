@@ -28,7 +28,6 @@
                 <div class="row gtr-200">
 
                     <div class="col-6 col-12-medium">
-
                         <!-- Table -->
                         <h3>Users</h3>
 

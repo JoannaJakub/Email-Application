@@ -24,7 +24,7 @@
             <!-- Content -->
             <section>
                 <header class="main">
-                    <h1>Email creator</h1>
+                    <h1>Add user</h1>
                 </header>
 
                 <!-- Elements -->
@@ -36,7 +36,7 @@
                         <!-- Form -->
                         <h3>Form</h3>
 
-                        <form:form method="post" action="emailSuccess"  modelAttribute="user">
+                        <form:form method="post" action="addUserSuccess"  modelAttribute="user">
                             <div class="row gtr-uniform">
                                 <div class="col-6 col-12-xsmall">
                                     <form:input type="text" name="name" id="name" value="" placeholder="Name" path="firstName"/>
@@ -46,7 +46,7 @@
                                 </div>
                                 <!-- Break -->
                                 <div class="col-12">
-                                    <form:select items="${department}" path="department" itemLabel="name" itemValue="id"/>
+                                    <form:select items="${role}" path="role" itemLabel="name" itemValue="id"/>
                                 </div>
                                 <!-- Break -->
                                 <div class="col-4 col-12-small">

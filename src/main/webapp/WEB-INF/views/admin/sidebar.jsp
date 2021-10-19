@@ -16,8 +16,9 @@
             </header>
             <ul>
                 <li><a href="<c:url value="/landingPage"/>">Homepage</a></li>
-                <li><a href="<c:url value="/email"/>">Email</a></li>
+                <li><a href="<c:url value="/email"/>">Add email</a></li>
                 <li><a href="<c:url value="/allEmails"/>">All emails</a></li>
+                <li><a href="<c:url value="/addUser"/>">Add user</a></li>
                 <li><a href="<c:url value="/allUsers"/>">All users</a></li>
                 <li>
                     <span class="opener">Submenu</span>

@@ -32,7 +32,7 @@ public class UsersController {
 
     @RequestMapping("/addUser")
     public String createUser(Model model) {
-        model.addAttribute("user", new Email());
+        model.addAttribute("user", new User());
         model.addAttribute("role", roleRepository.findAll());
         return "admin/user/addUser";
     }
@@ -40,7 +40,6 @@ public class UsersController {
 
     @PostMapping(value = "/addUserSuccess")
     public String addUserSuccess(@Valid User user, BindingResult result, Model model) {
-
         userRepository.save(user);
         return "admin/user/userSuccess";
     }
