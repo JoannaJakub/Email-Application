@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setEnabled(false);
-        Role userRole = roleRepository.findByName("ROLE_USER");
+        Role userRole = roleRepository.findByName("USER");
         user.setRole(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);
     }

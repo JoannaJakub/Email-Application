@@ -1,13 +1,14 @@
 package emailapp.controller;
 
-import emailapp.model.Email;
 import emailapp.model.User;
 import emailapp.repository.EmailRepository;
 import emailapp.repository.RoleRepository;
 import emailapp.repository.UserRepository;
+import emailapp.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,11 +20,13 @@ public class UsersController {
     public final UserRepository userRepository;
     public final EmailRepository emailRepository;
     public final RoleRepository roleRepository;
+    public final UserService userService;
 
-    public UsersController(UserRepository userRepository, EmailRepository emailRepository, RoleRepository roleRepository) {
+    public UsersController(UserRepository userRepository, EmailRepository emailRepository, RoleRepository roleRepository, UserService userService) {
         this.userRepository = userRepository;
         this.emailRepository = emailRepository;
         this.roleRepository = roleRepository;
+        this.userService = userService;
     }
 
     @RequestMapping("/allUsers")
@@ -42,8 +45,16 @@ public class UsersController {
 
     @PostMapping(value = "/addUserSuccess")
     public String addUserSuccess(@Valid User user, BindingResult result, Model model) {
-        userRepository.save(user);
-        return "admin/user/userSuccess";
+        if (result.hasErrors()) {
+            model.addAttribute("role", roleRepository.findAll());
+            return "admin/user/addUser";
+        } else if (userService.findByUserName(user.getUsername().toLowerCase()) != null) {
+            result.addError(new FieldError(user.toString(), "username", "Email is already taken"));
+        } else {
+            userService.saveUser(user);
+            return "admin/user/userSuccess";
+        }
+        return "admin/user/addUser";
     }
 
     @RequestMapping("/usersConfirmDelete")

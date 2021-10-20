@@ -15,7 +15,7 @@
                 <h2>Menu</h2>
             </header>
             <ul>
-                <li><a href="<c:url value="/landingPage"/>">Homepage</a></li>
+                <li><a href="<c:url value="/adminLandingPage"/>">Homepage</a></li>
                 <li><a href="<c:url value="/email"/>">Add email</a></li>
                 <li><a href="<c:url value="/allEmails"/>">All emails</a></li>
                 <li><a href="<c:url value="/addUser"/>">Add user</a></li>
