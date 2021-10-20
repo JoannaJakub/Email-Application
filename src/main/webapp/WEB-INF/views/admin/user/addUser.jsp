@@ -40,9 +40,18 @@
                             <div class="row gtr-uniform">
                                 <div class="col-6 col-12-xsmall">
                                     <form:input type="text" name="name" id="name" value="" placeholder="Name" path="firstName"/>
+                                    <form:errors path="firstName"/>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
-                                    <form:input type="text" name="surname" id="surname" value="" placeholder="Surname" path="lastName"/>
+                                    <form:input type="text" name="lastname" id="lastname" value="" placeholder="Surname" path="lastName"/>
+                                    <form:errors path="lastName"/>
+                                </div>
+                                <div class="col-6 col-12-xsmall">
+                                    <form:input type="text" name="username" id="username" value="" placeholder="Username" path="username"/>
+                                    <form:errors path="username"/>
+                                </div>
+                                <div class="col-6 col-12-xsmall">
+                                    <form:input type="text" name="enabled" id="enabled" value="" placeholder="enabled" path="enabled"/>
                                 </div>
                                 <!-- Break -->
                                 <div class="col-12">
