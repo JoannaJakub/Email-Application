@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Elements - Editorial by HTML5 UP</title>
+    <title>User adding succes</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="<c:url value="../resources/distribution/assets/css/main.css"/>"/>
@@ -44,35 +44,30 @@
                                 <tr>
                                     <th>Name</th>
                                     <th><c:out value="${userDetails.firstName}"/></th>
-                                    <th>Price</th>
                                 </tr>
                                 </thead>
                                 <thead>
                                 <tr>
                                     <th>Surname</th>
                                     <th><c:out value="${userDetails.lastName}"/></th>
-                                    <th>Price</th>
                                 </tr>
                                 </thead>
                                 <thead>
                                 <tr>
-                                    <th>Mailbox capacity</th>
-                                    <th><c:out value="${userDetails.mailboxCapacity}"/></th>
-                                    <th>Price</th>
+                                    <th>Username</th>
+                                    <th><c:out value="${userDetails.username}"/></th>
                                 </tr>
                                 </thead>
                                 <thead>
                                 <tr>
-                                    <th>Email</th>
-                                    <th><c:out value="${userDetails.generatedEmail}"/></th>
-                                    <th>Price</th>
+                                    <th>Role</th>
+                                    <th><c:out value="${userDetails.role}"/></th>
                                 </tr>
                                 </thead>
                                 <thead>
                                 <tr>
                                     <th>Password</th>
                                     <th><c:out value="${userDetails.password}"/></th>
-                                    <th>Price</th>
                                 </tr>
                                 </thead>
                             </table>
