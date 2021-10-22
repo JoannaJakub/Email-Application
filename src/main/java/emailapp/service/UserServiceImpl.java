@@ -33,4 +33,9 @@ public class UserServiceImpl implements UserService {
         user.setRole(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);
     }
+
+    @Override
+    public User findLastUserById(Long id) {
+        return userRepository.findLastUserById(id);
+    }
 }

@@ -1,6 +1,7 @@
 package emailapp.controller;
 
 import emailapp.RandomPasswordGenerator;
+import emailapp.model.Role;
 import emailapp.model.User;
 import emailapp.repository.EmailRepository;
 import emailapp.repository.RoleRepository;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.Arrays;
+import java.util.HashSet;
+
 @Controller
 public class UsersController {
     public final UserRepository userRepository;
@@ -48,19 +52,22 @@ public class UsersController {
 
 
     @PostMapping(value = "/addUserSuccess")
-    public String addUserSuccess(@Valid User user, BindingResult result) {
+    public String addUserSuccess(@Valid User user, BindingResult result, Model model) {
         user.setPassword(randomPasswordGenerator.generatePassword());
         if (result.hasErrors()) {
             System.out.println("this is userErrro......." + user);
             return "admin/user/addUser";
         } else if (userService.findByUserName(user.getUsername().toLowerCase()) != null) {
-            result.addError(new FieldError(user.toString(), "username", "Email is already taken"));
-        } else {
-            System.out.println("this is user......." + user);
+            result.addError(new FieldError(user.toString(), "username", "Username is already taken"));
+        } else if (user.getRole().equals("ADMIN")) {
+            Role userRole = roleRepository.findByName("ADMIN");
+            user.setRole(new HashSet<Role>(Arrays.asList(userRole)));
+        }  else {
             userService.saveUser(user);
-
+            model.addAttribute("userDetails", userService.findLastUserById(user.getId()));
+            return "admin/user/userSuccess";
         }
-        return "admin/user/userSuccess";
+        return "admin/user/addUser";
     }
 
     @RequestMapping("/usersConfirmDelete")

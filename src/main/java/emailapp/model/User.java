@@ -26,8 +26,8 @@ public class User implements Serializable {
     @NotEmpty(message = "Please enter your username.")
     @Column(nullable = false,  length = 45)
     private String username;
-    @NotBlank(message = "Please enter your password.")
-    @Column(nullable = false, length = 64)
+  /*  @NotBlank(message = "Please enter your password.")
+    @Column(nullable = false, length = 64)*/
     private String password;
     @NotEmpty(message = "Please enter your name.")
     @Column(name = "firstName", nullable = false, length = 20)
