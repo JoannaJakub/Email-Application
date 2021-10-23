@@ -1,6 +1,7 @@
 package emailapp.controller;
 
 import emailapp.RandomPasswordGenerator;
+import emailapp.model.Email;
 import emailapp.model.Role;
 import emailapp.model.User;
 import emailapp.repository.EmailRepository;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.persistence.PreRemove;
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -81,5 +83,18 @@ public class UsersController {
         return "redirect:/allUsers";
 
 
+    }
+    @GetMapping(value = {"/userEdit/{id}"})
+    public String userEditForm(@PathVariable long id, Model model) {
+        model.addAttribute("edit", userRepository.findById(id));
+        model.addAttribute("role", roleRepository.findAll());
+
+        return "admin/user/userEdit";
+    }
+
+    @PostMapping(value = {"userEdit/{id}"})
+    public String userEditSave(@Valid User user) {
+        userService.saveUser(user);
+        return "redirect:/userConfirmEditing/{id}";
     }
 }
