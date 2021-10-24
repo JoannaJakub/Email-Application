@@ -21,6 +21,7 @@ import javax.persistence.PreRemove;
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 
 @Controller
 public class UsersController {
@@ -64,7 +65,7 @@ public class UsersController {
         } else if (user.getRole().equals("ADMIN")) {
             Role userRole = roleRepository.findByName("ADMIN");
             user.setRole(new HashSet<Role>(Arrays.asList(userRole)));
-        }  else {
+        } else {
             userService.saveUser(user);
             model.addAttribute("userDetails", userService.findLastUserById(user.getId()));
             return "admin/user/userSuccess";
@@ -84,6 +85,7 @@ public class UsersController {
 
 
     }
+
     @GetMapping(value = {"/userEdit/{id}"})
     public String userEditForm(@PathVariable long id, Model model) {
         model.addAttribute("edit", userRepository.findById(id));
@@ -96,5 +98,17 @@ public class UsersController {
     public String userEditSave(@Valid User user) {
         userService.saveUser(user);
         return "redirect:/userConfirmEditing/{id}";
+    }
+
+    @RequestMapping("/userConfirmEditing/{id}")
+    public String userConfirmEditing(@PathVariable long id, Model model) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            model.addAttribute("userConfirmEdit", user.get());
+        } else {
+            return "admin/user/adminError";
+        }
+        return "admin/user/userConfirmEdit";
+
     }
 }

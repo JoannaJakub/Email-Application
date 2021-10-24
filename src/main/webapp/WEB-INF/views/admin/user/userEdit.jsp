@@ -38,22 +38,23 @@
 
                         <form:form method="post"   modelAttribute="edit">
                             <div class="row gtr-uniform">
-                                <div class="col-6 col-12-xsmall">
-                                    <c:out value="${id}"/>
+                                <div class="col-12">ID
+                                    <c:out value=" ${id}"/>
+                                    <form:hidden path="password"/>
                                 </div>
-                                <div class="col-6 col-12-xsmall">
+                                <div class="col-12">
                                     <form:input type="text" name="firstName" id="firstName" placeholder="Name" path="firstName"/>
                                 </div>
-                                <div class="col-6 col-12-xsmall">
+                                <div class="col-12">
                                     <form:input type="text" name="surname" id="surname" value="" placeholder="Surname" path="lastName"/>
                                 </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <a href="<c:url value="/userGenerateNewPassword/${id}"/>">New password</a>
+                                <div class="col-12">
+                                    <a href="<c:url value="/userGenerateNewPassword/${id}"/>"> New password</a>
                                 </div>
-                                <div class="col-6 col-12-xsmall">
+                                <div class="col-12">
                                     <form:input type="text" name="username" id="username" value="" placeholder="username" path="username"/>
                                 </div>
-                                <div class="col-6 col-12-xsmall">
+                                <div class="col-12">
                                     <form:input type="text" name="enabled" id="enabled" value="" placeholder="enabled" path="enabled"/>
                                 </div>
                                 <!-- Break -->
