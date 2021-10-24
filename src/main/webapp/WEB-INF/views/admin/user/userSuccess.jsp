@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>User adding succes</title>
+    <title>User adding success</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="<c:url value="../resources/distribution/assets/css/main.css"/>"/>

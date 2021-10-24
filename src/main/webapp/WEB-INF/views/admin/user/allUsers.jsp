@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Elements - Editorial by HTML5 UP</title>
+    <title>All users</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="<c:url value="../resources/distribution/assets/css/main.css"/>"/>
@@ -28,6 +28,7 @@
                 <div class="row gtr-200">
 
                     <div class="col-6 col-12-medium">
+
                         <!-- Table -->
                         <h3>Users</h3>
 

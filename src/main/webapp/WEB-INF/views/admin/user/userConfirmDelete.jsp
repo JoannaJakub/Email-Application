@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Elements - Editorial by HTML5 UP</title>
+    <title>Confirm deleting</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="<c:url value="../resources/distribution/assets/css/main.css"/>"/>
