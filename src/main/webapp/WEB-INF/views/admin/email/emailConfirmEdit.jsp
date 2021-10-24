@@ -42,6 +42,7 @@
                                 <div class="col-6 col-12-xsmall">
                                     <td>ID</td>
                                     <c:out value="${id}" />
+
                                 </div>
                                 </tr>
                                 <tr>
@@ -78,6 +79,10 @@
                                 <!-- Break -->
                                 <div class="col-12">
                                     <ul class="actions">
+                                        <li><a href="<c:url value="/emailEdit/${emailConfirmEdit.id}"/>"
+                                               class="button primary large">Edit this user</a></li>
+                                        <li><a href="<c:url value="/allEmails"/>" class="button large">Back to all
+                                            email</a></li>
 
                                     </ul>
                                 </div>

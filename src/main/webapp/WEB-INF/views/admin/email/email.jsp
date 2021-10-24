@@ -36,13 +36,15 @@
                         <!-- Form -->
                         <h3>Form</h3>
 
-                        <form:form method="post" action="emailSuccess"  modelAttribute="user">
+                        <form:form method="post" action="emailSuccess"  modelAttribute="addThisEmail">
                             <div class="row gtr-uniform">
                                 <div class="col-6 col-12-xsmall">
-                                    <form:input type="text" name="name" id="name" value="" placeholder="Name" path="firstName"/>
+                                    <form:input type="text" name="firstName" id="firstName" value="" placeholder="Name" path="firstName"/>
+
                                 </div>
                                 <div class="col-6 col-12-xsmall">
-                                    <form:input type="text" name="surname" id="surname" value="" placeholder="Surname" path="lastName"/>
+                                    <form:input type="text" name="lastName" id="lastName" value="" placeholder="Surname" path="lastName"/>
+
                                 </div>
                                 <!-- Break -->
                                 <div class="col-12">
@@ -73,8 +75,9 @@
                                 <!-- Break -->
                                 <div class="col-12">
                                     <ul class="actions">
-                                        <li><input type="submit" value="Send Message" class="primary"/></li>
-                                        <li><input type="reset" value="Reset"/></li>
+                                        <li><input type="submit" value="Add user" class="primary"/></li>
+                                        <li><a href="<c:url value="/email"/>"
+                                               class="button large">Reset</a></li>
                                     </ul>
                                 </div>
                             </div>

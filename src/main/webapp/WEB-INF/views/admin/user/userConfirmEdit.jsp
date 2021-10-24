@@ -72,7 +72,7 @@
                                 <tr>
                                     <div class="col-12">
                                         <td>Role</td>
-                                        <c:out value="${userConfirmEdit.role}"/>
+                                        <c:out value="${userConfirmEdit.role.iterator().next().name}"/>
                                     </div>
                                 </tr>
 

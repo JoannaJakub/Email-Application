@@ -77,6 +77,13 @@
                                 </tr>
                                 </thead>
                             </table>
+                                <div class="col-12">
+                                    <ul class="actions">
+                                        <li><a href="<c:url value="/allEmails"/>" class="button large">Back to all
+                                            email</a></li>
+
+                                    </ul>
+                                </div>
                             </form:form>
                         </div>
                     </div>

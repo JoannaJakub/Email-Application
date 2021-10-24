@@ -33,7 +33,7 @@
                         <h3>Users</h3>
 
                         <div class="table-responsive">
-                            <table>
+                            <table class="table">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
@@ -58,7 +58,7 @@
                                     <td><c:out value="${allUsers.username}"/></td>
                                     <td><c:out value="${allUsers.password}"/></td>
                                     <td><c:out value="${allUsers.enabled}"/></td>
-                                    <td><c:out value="${allUsers.role}"/></td>
+                                    <td><c:out value="${allUsers.role.iterator().next().name}"/></td>
                                     <td><a href="<c:url value="/usersConfirmDelete/?id=${allUsers.id}"/>">Delete</a></td>
                                     <td><a href="<c:url value="/userEdit/${allUsers.id}"/>">Edit</a></td>
                                     <td><a href="<c:url value="/usersGenerateNewPassword/${allUsers.id}"/>">New password</a></td>

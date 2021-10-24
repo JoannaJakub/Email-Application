@@ -45,8 +45,9 @@
                                     <form:input type="text" name="surname" id="surname" value="" placeholder="Surname" path="lastName"/>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
+                                    <form:hidden path="password"/>
+
                                     <a href="<c:url value="/generateNewPassword/${id}"/>">New password</a>
-                                    <c:out value="${userEdit}"/>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
                                     <form:input type="text" name="generatedEmail" id="generatedEmail" value="" placeholder="generatedEmail" path="generatedEmail"/>

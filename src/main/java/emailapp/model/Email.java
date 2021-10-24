@@ -9,6 +9,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Data
@@ -20,7 +21,11 @@ public class Email {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message = "Please enter your username.")
+    @Column(nullable = false,  length = 45)
     private String firstName;
+    @NotEmpty(message = "Please enter your username.")
+    @Column(nullable = false,  length = 45)
     private String lastName;
     private String password;
     private String generatedEmail;

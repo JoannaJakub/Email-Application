@@ -29,7 +29,7 @@ public class EmailController {
 
     @RequestMapping("/email")
     public String createMail(Model model) {
-        model.addAttribute("user", new Email());
+        model.addAttribute("addThisEmail", new Email());
         model.addAttribute("department", departmentRepository.findAll());
         return "admin/email/email";
     }
@@ -40,15 +40,19 @@ public class EmailController {
 
     @PostMapping(value = "/emailSuccess")
     public String processRegister(@Valid Email email, BindingResult result, Model model) {
-        email.setPassword(randomPasswordGenerator.generatePassword());
-        String firstName = email.getFirstName().toLowerCase();
-        String lastName = email.getLastName().toLowerCase();
-        String department = email.getDepartment().getShortName().toLowerCase();
-        String company = companyName().toLowerCase();
-        email.setGeneratedEmail(firstName + "." + lastName + "@" + department + "." + company + ".com");
-        emailRepository.save(email);
-        model.addAttribute("userDetails", emailRepository.findTopByOrderByIdDesc());
-        return "admin/email/emailSuccess";
+        if (result.hasErrors()) {
+            return "admin/email/email";
+        }
+            email.setPassword(randomPasswordGenerator.generatePassword());
+            String firstName = email.getFirstName().toLowerCase();
+            String lastName = email.getLastName().toLowerCase();
+            String department = email.getDepartment().getShortName().toLowerCase();
+            String company = companyName().toLowerCase();
+            email.setGeneratedEmail(firstName + "." + lastName + "@" + department + "." + company + ".com");
+            emailRepository.save(email);
+            model.addAttribute("userDetails", emailRepository.findTopByOrderByIdDesc());
+            return "admin/email/emailSuccess";
+
     }
 
     @RequestMapping("/allEmails")
