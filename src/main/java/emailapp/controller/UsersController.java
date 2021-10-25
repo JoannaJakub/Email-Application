@@ -111,4 +111,17 @@ public class UsersController {
         return "admin/user/userConfirmEdit";
 
     }
+
+   @GetMapping(value = {"/userGenerateNewPassword/{id}"})
+    public String userGenerateNewPasswordEditForm(@PathVariable long id, Model model) {
+        model.addAttribute("newPas", userRepository.findById(id));
+        return "admin/user/userGenerateNewPassword";
+    }
+
+    @PostMapping(value = {"userGenerateNewPassword/{id}"})
+    public String userGenerateNewPasswordSave(@Valid User user) {
+        userService.saveUser(user);
+        return "redirect:/userGenerateNewPasswordConfirm/{id}";
+    }
+
 }
