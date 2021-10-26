@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Generate new password</title>
+    <title>Generate new password - confirm</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="<c:url value="../resources/distribution/assets/css/main.css"/>"/>
@@ -24,7 +24,7 @@
             <!-- Content -->
             <section>
                 <header class="main">
-                    <h1>Generate new password</h1>
+                    <h1>New password</h1>
                 </header>
 
                 <!-- Elements -->
@@ -36,26 +36,30 @@
                         <!-- Form -->
                         <h3></h3>
 
-                        <form:form method="post"   modelAttribute="newPas">
+                        <form:form items="${newPassword}" var="newPassword">
                             <div class="row gtr-uniform">
                                 <div class="col-6 col-12-xsmall">
-                                    <form:hidden path="firstName"/>
-                                    <form:hidden path="lastName"/>
-                                    <form:hidden path="username"/>
-                                    <form:hidden path="enabled"/>
-                                    <form:hidden path="role"/>
+                                    <c:out value="${newPassword.firstName}"/>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
+                                    <c:out value="${newPassword.lastName}"/>
                                 </div>
-                                <div class="col-6 col-12-xsmall">
-                                    <form:input type="text" name="password" id="password" value="" placeholder="password" path="password"/>
-                                </div>
+                                <tr>
+                                    <div class="col-12">
+                                        <td>New Password<br></td>
+                                        <br>
+                                        <c:out value="${newPassword.password}"/>
+                                    </div>
+                                </tr>
 
                                 <!-- Break -->
                                 <div class="col-12">
                                     <ul class="actions">
-                                        <li><input type="submit" value="New password" class="primary"/></li>
-                                        <li><input type="reset" value="Back to all users"/></li>
+                                        <li><a href="<c:url value="/userGenerateNewPassword/${newPassword.id}"/>"
+                                               class="button primary large">Generate password again</a></li>
+                                        <li><a href="<c:url value="/allUsers"/>" class="button large">Back to all
+                                            users</a></li>
+
                                     </ul>
                                 </div>
                             </div>

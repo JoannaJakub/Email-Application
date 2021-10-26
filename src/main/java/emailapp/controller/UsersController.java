@@ -8,6 +8,7 @@ import emailapp.repository.EmailRepository;
 import emailapp.repository.RoleRepository;
 import emailapp.repository.UserRepository;
 import emailapp.service.UserService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -123,5 +124,14 @@ public class UsersController {
         userService.saveUser(user);
         return "redirect:/userGenerateNewPasswordConfirm/{id}";
     }
-
+    @RequestMapping("/userGenerateNewPasswordConfirm/{id}")
+    public String userGenerateNewPasswordConfirm(@PathVariable long id, Model model) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            model.addAttribute("newPassword", user.get());
+        } else {
+            return "admin/user/adminError";
+        }
+        return "admin/user/userGenerateNewPasswordConfirm";
+    }
 }
