@@ -5,7 +5,6 @@ import emailapp.model.User;
 import emailapp.service.CustomerServices;
 import emailapp.service.UserNotFoundException;
 import net.bytebuddy.utility.RandomString;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -21,11 +20,13 @@ import java.io.UnsupportedEncodingException;
 
 @Controller
 public class ForgotPasswordController {
-    @Autowired
-    private JavaMailSender mailSender;
+    public final  JavaMailSender mailSender;
+    public final  CustomerServices customerService;
 
-    @Autowired
-    private CustomerServices customerService;
+    public ForgotPasswordController(JavaMailSender mailSender, CustomerServices customerService) {
+        this.mailSender = mailSender;
+        this.customerService = customerService;
+    }
 
     @GetMapping("/forgot_password")
     public String showForgotPasswordForm() {
@@ -34,9 +35,10 @@ public class ForgotPasswordController {
 
     @PostMapping("/forgot_password")
     public String processForgotPassword(HttpServletRequest request, Model model) {
-        String email = request.getParameter("username");
+        String email = request.getParameter("email");
         String token = RandomString.make(30);
-
+        System.out.println(".............."+email);
+        System.out.println(".............."+token);
         try {
             customerService.updateResetPasswordToken(token, email);
             String resetPasswordLink = Utility.getSiteURL(request) + "/reset_password?token=" + token;
@@ -57,7 +59,7 @@ public class ForgotPasswordController {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
-        helper.setFrom("contact@shopme.com", "Shopme Support");
+        helper.setFrom("contact.com", "Shopme Support");
         helper.setTo(recipientEmail);
 
         String subject = "Here's the link to reset your password";

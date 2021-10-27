@@ -17,12 +17,12 @@ public class CustomerServices {
 
 
     public void updateResetPasswordToken(String token, String email) throws UserNotFoundException {
-        User customer = customerRepo.findByUsername(email);
+        User customer = customerRepo.findByEmail(email);
         if (customer != null) {
             customer.setResetPasswordToken(token);
             customerRepo.save(customer);
         } else {
-            throw new UserNotFoundException("Could not find any customer with the email " + email);
+            throw new UserNotFoundException("Could not find any customer with the email " + email );
         }
     }
 

@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Email creator</title>
+    <title>Forgot password</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="<c:url value="../resources/distribution/assets/css/main.css"/>"/>
@@ -39,29 +39,29 @@
                         <div>
                             <h2>Forgot Password</h2>
                         </div>
-
+<%--
                         <div th:if="${error != null}">
                             <p class="text-danger">[[${error}]]</p>
                         </div>
                         <div th:if="${message != null}">
                             <p class="text-warning">[[${message}]]</p>
-                        </div>
+                        </div>--%>
 
-                        <form th:action="@{/forgot_password}" method="post" style="max-width: 420px; margin: 0 auto;">
+                        <form:form method="post" action="forgot_password" style="max-width: 420px; margin: 0 auto;">
                             <div class="border border-secondary rounded p-3">
                                 <div>
                                     <p>We will be sending a reset password link to your email.</p>
                                 </div>
                                 <div>
                                     <p>
-                                        <input type="email" name="email" class="form-control" placeholder="Enter your e-mail" required autofocus/>
+                                        <input type="email" name="email" placeholder="Enter your e-mail" path="email"/>
                                     </p>
                                     <p class="text-center">
                                         <input type="submit" value="Send" class="btn btn-primary" />
                                     </p>
                                 </div>
                             </div>
-                        </form>
+                        </form:form>
 
                     </div>
                 </div>
