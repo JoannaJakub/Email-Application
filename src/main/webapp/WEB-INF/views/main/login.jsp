@@ -51,6 +51,10 @@
                                 <button type="submit" class="btn btn-primary">Login</button>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 </br> </br>
+                                <a
+                                href="<c:url value="/forgot_password"/>"
+                                        class="button primary"
+                                >Forget password?</a>
                             </div>
                         </form:form>
 
