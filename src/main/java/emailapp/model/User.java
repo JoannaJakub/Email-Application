@@ -43,4 +43,5 @@ public class User implements Serializable {
 
     @Column(name = "reset_password_token")
     private String resetPasswordToken;
+    private String email;
 }
