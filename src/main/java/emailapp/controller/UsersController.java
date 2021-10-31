@@ -1,14 +1,12 @@
 package emailapp.controller;
 
 import emailapp.RandomPasswordGenerator;
-import emailapp.model.Email;
 import emailapp.model.Role;
 import emailapp.model.User;
 import emailapp.repository.EmailRepository;
 import emailapp.repository.RoleRepository;
 import emailapp.repository.UserRepository;
 import emailapp.service.UserService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.persistence.PreRemove;
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -59,7 +56,6 @@ public class UsersController {
     public String addUserSuccess(@Valid User user, BindingResult result, Model model) {
         user.setPassword(randomPasswordGenerator.generatePassword());
         if (result.hasErrors()) {
-            System.out.println("this is userErrro......." + user);
             return "admin/user/addUser";
         } else if (userService.findByUserName(user.getUsername().toLowerCase()) != null) {
             result.addError(new FieldError(user.toString(), "username", "Username is already taken"));
