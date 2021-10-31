@@ -39,13 +39,13 @@
                         <div>
                             <h2>Forgot Password</h2>
                         </div>
-<%--
+
                         <div th:if="${error != null}">
                             <p class="text-danger">[[${error}]]</p>
                         </div>
                         <div th:if="${message != null}">
                             <p class="text-warning">[[${message}]]</p>
-                        </div>--%>
+                        </div>
 
                         <form:form method="post" action="forgot_password" style="max-width: 420px; margin: 0 auto;">
                             <div class="border border-secondary rounded p-3">
