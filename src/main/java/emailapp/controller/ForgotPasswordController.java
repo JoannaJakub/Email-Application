@@ -2,7 +2,7 @@ package emailapp.controller;
 
 import emailapp.Utility;
 import emailapp.model.User;
-import emailapp.service.CustomerServices;
+import emailapp.service.ForgetUserService;
 import emailapp.service.UserNotFoundException;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.data.repository.query.Param;
@@ -21,11 +21,11 @@ import java.io.UnsupportedEncodingException;
 @Controller
 public class ForgotPasswordController {
     public final  JavaMailSender mailSender;
-    public final  CustomerServices customerService;
+    public final ForgetUserService forgetUserService;
 
-    public ForgotPasswordController(JavaMailSender mailSender, CustomerServices customerService) {
+    public ForgotPasswordController(JavaMailSender mailSender, ForgetUserService forgetUserService) {
         this.mailSender = mailSender;
-        this.customerService = customerService;
+        this.forgetUserService = forgetUserService;
     }
 
     @GetMapping("/forgot_password")
@@ -38,10 +38,10 @@ public class ForgotPasswordController {
         String email = request.getParameter("email");
         String token = RandomString.make(30);
         try {
-            customerService.updateResetPasswordToken(token, email);
+            forgetUserService.updateResetPasswordToken(token, email);
             String resetPasswordLink = Utility.getSiteURL(request) + "/reset_password?token=" + token;
             sendEmail(email, resetPasswordLink);
-            model.addAttribute("message", "We have sent a reset password link to your email. Please check.");
+            model.addAttribute("message", "We have sent a reset password link to your email.<br> Please check.");
 
         } catch (UserNotFoundException ex) {
             model.addAttribute("error", ex.getMessage());
@@ -79,10 +79,10 @@ public class ForgotPasswordController {
 
     @GetMapping("/reset_password")
     public String showResetPasswordForm(@Param(value = "token") String token, Model model) {
-        User customer = customerService.getByResetPasswordToken(token);
+        User user = forgetUserService.getByResetPasswordToken(token);
         model.addAttribute("token", token);
 
-        if (customer == null) {
+        if (user == null) {
             model.addAttribute("message", "Invalid Token");
             return "message";
         }
@@ -95,18 +95,16 @@ public class ForgotPasswordController {
         String token = request.getParameter("token");
         String password = request.getParameter("password");
 
-        User customer = customerService.getByResetPasswordToken(token);
+        User user = forgetUserService.getByResetPasswordToken(token);
         model.addAttribute("title", "Reset your password");
 
-        if (customer == null) {
+        if (user == null) {
             model.addAttribute("message", "Invalid Token");
-            return "message";
         } else {
-            customerService.updatePassword(customer, password);
-
+            forgetUserService.updatePassword(user, password);
             model.addAttribute("message", "You have successfully changed your password.");
         }
 
-        return "message";
+        return "main/changedPassword";
     }
 }
