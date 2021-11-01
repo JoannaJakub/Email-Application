@@ -10,32 +10,32 @@ import javax.transaction.Transactional;
 
 @Service
 @Transactional
-public class CustomerServices {
+public class ForgetUserService {
 
     @Autowired
-    private UserRepository customerRepo;
+    private UserRepository userRepo;
 
 
     public void updateResetPasswordToken(String token, String email) throws UserNotFoundException {
-        User customer = customerRepo.findByEmail(email);
-        if (customer != null) {
-            customer.setResetPasswordToken(token);
-            customerRepo.save(customer);
+        User user = userRepo.findByEmail(email);
+        if (user != null) {
+            user.setResetPasswordToken(token);
+            userRepo.save(user);
         } else {
             throw new UserNotFoundException("Could not find any customer with the email " + email );
         }
     }
 
     public User getByResetPasswordToken(String token) {
-        return customerRepo.findByResetPasswordToken(token);
+        return userRepo.findByResetPasswordToken(token);
     }
 
-    public void updatePassword(User customer, String newPassword) {
+    public void updatePassword(User user, String newPassword) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(newPassword);
-        customer.setPassword(encodedPassword);
+        user.setPassword(encodedPassword);
 
-        customer.setResetPasswordToken(null);
-        customerRepo.save(customer);
+        user.setResetPasswordToken(null);
+        userRepo.save(user);
     }
 }

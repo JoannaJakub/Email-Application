@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Email creator</title>
+    <title>Reset password</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="<c:url value="../resources/distribution/assets/css/main.css"/>"/>
@@ -24,7 +24,7 @@
             <!-- Content -->
             <section>
                 <header class="main">
-                    <h1>Login</h1>
+                    <h1>Reset Your Password</h1>
                 </header>
 
                 <!-- Elements -->
@@ -35,11 +35,7 @@
 
                         <!-- Form -->
 
-                        <div>
-                            <h2>Reset Your Password</h2>
-                        </div>
-
-                        <form:form action="reset_password" method="post" style="max-width: 350px; margin: 0 auto;">
+                        <form:form action="reset_password" method="post"  style="form-validate mb-4">
                             <input type="hidden" name="token" value="${token}" />
                             <div class="border border-secondary rounded p-3">
                                 <div>
@@ -76,7 +72,6 @@
     }
 
 </script>
-    <!-- Sidebar -->
 
 
 </div>

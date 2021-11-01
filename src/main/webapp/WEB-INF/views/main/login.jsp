@@ -35,7 +35,6 @@
 
                         <!-- Form -->
 
-
                         <form:form method="post" class="form-validate mb-4">
                             <div class="form-group">
                                 <input id="login-username" type="text" name="username" placeholder="Email" required data-msg="Please enter your email" class="input-material">
@@ -63,12 +62,8 @@
                 </div>
 
             </section>
-
         </div>
     </div>
-
-    <!-- Sidebar -->
-
 
 </div>
 

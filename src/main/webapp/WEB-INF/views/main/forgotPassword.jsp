@@ -24,7 +24,7 @@
             <!-- Content -->
             <section>
                 <header class="main">
-                    <h1>Login</h1>
+                    <h1>Forgot password</h1>
                 </header>
 
                 <!-- Elements -->
@@ -35,19 +35,7 @@
 
                         <!-- Form -->
 
-
-                        <div>
-                            <h2>Forgot Password</h2>
-                        </div>
-
-                        <div th:if="${error != null}">
-                            <p class="text-danger">[[${error}]]</p>
-                        </div>
-                        <div th:if="${message != null}">
-                            <p class="text-warning">[[${message}]]</p>
-                        </div>
-
-                        <form:form method="post" action="forgot_password" style="max-width: 420px; margin: 0 auto;">
+                        <form:form method="post" action="forgot_password" style="form-validate mb-4">
                             <div class="border border-secondary rounded p-3">
                                 <div>
                                     <p>We will be sending a reset password link to your email.</p>
@@ -62,6 +50,12 @@
                                 </div>
                             </div>
                         </form:form>
+                        <div th:if="${error != null}">
+                            <h2 class="text-danger">${error}</h2>
+                        </div>
+                        <div th:if="${message != null}">
+                            <h2 class="text-warning">${message}</h2>
+                        </div>
 
                     </div>
                 </div>
@@ -70,9 +64,6 @@
 
         </div>
     </div>
-
-    <!-- Sidebar -->
-
 
 </div>
 
