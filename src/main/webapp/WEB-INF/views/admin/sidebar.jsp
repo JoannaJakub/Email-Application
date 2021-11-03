@@ -20,6 +20,7 @@
                 <li><a href="<c:url value="/allEmails"/>">All emails</a></li>
                 <li><a href="<c:url value="/addUser"/>">Add user</a></li>
                 <li><a href="<c:url value="/allUsers"/>">All users</a></li>
+                <li><a href="<c:url value="/event"/>">Calendar</a></li>
                 <li>
                     <span class="opener">Submenu</span>
                     <ul>

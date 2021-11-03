@@ -25,4 +25,9 @@ public class EventController {
         return eventRepository.findBetween(start, end);
     }
 
+    @GetMapping("/event")
+    public String event() {
+        return "admin/event/calendar";
+    }
+
 }
