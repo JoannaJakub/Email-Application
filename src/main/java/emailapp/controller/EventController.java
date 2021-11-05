@@ -25,12 +25,15 @@ public class EventController {
 
     @GetMapping("/event")
     public String event() {
+        eventRepository.findAll();
+        System.out.println(eventRepository.findAll());
         return "admin/event/calendar";
     }
 
     @GetMapping("/api/events")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
-    Iterable<Event> events(@RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime start, @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end) {
+    Iterable<Event> events(@RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime start,
+                           @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end) {
         return eventRepository.findBetween(start, end);
     }
 
@@ -55,4 +58,24 @@ public class EventController {
         public Long resource;
     }
 
+
+    @PostMapping("/api/events/move")
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @Transactional
+    Event moveEvent(@RequestBody EventMoveParams params) {
+
+        Event e = eventRepository.findById(params.id).get();
+        e.setStart(params.start);
+        e.setEnd(params.end);
+        eventRepository.save(e);
+
+        return e;
+    }
+
+    public static class EventMoveParams {
+        public Long id;
+        public LocalDateTime start;
+        public LocalDateTime end;
+        public Long resource;
+    }
 }
