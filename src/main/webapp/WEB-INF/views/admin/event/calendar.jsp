@@ -38,8 +38,11 @@
 
 <!-- DayPilot library -->
 <script src="../resources/static/js/daypilot/daypilot-all.min.js"></script>
+
 <!-- Scripts -->
 <%@ include file="../scripts.jsp" %>
+
+<div id="dp">
 <script>
 
     const nav = new DayPilot.Navigator("nav");
@@ -79,7 +82,34 @@
             });
         });
     };
-
+    dp.onEventMove = function (args) {
+        var params = {
+            id: args.e.id(),
+            start: args.newStart.toString(),
+            end: args.newEnd.toString()
+        };
+        DayPilot.Http.ajax({
+            url: '/api/events/move',
+            data: params,
+            success: function (ajax) {
+                dp.message("Event moved");
+            }
+        });
+    };
+    dp.onEventResize = function (args) {
+        var params = {
+            id: args.e.id(),
+            start: args.newStart.toString(),
+            end: args.newEnd.toString()
+        };
+        DayPilot.Http.ajax({
+            url: '/api/events/move',
+            data: params,
+            success: function (ajax) {
+                dp.message("Event resized");
+            }
+        });
+    };
 
     dp.init();
 
@@ -87,6 +117,6 @@
 
 
 </script>
-
+</div>
 </body>
 </html>
