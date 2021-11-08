@@ -42,7 +42,7 @@
 <!-- Scripts -->
 <%@ include file="../scripts.jsp" %>
 
-<div id="dp">
+
 <script>
 
     const nav = new DayPilot.Navigator("nav");
@@ -110,6 +110,22 @@
             }
         });
     };
+    dp.onBeforeEventRender = function(args) {
+        args.data.barColor = args.data.color;
+        args.data.areas = [
+            { top: 2, right: 2, icon: "icon-triangle-down", visibility: "Visible", action: "ContextMenu", style: "font-size: 12px; background-color: #f9f9f9; border: 1px solid #ccc; padding: 2px 2px 0px 2px; cursor:pointer;"}
+        ];
+    };
+    dp.contextMenu = new DayPilot.Menu({
+        items: [
+            {
+                text: "Blue",
+                icon: "icon icon-blue",
+                color: "#1066a8",
+                onClick: function(args) { updateColor(args.source, args.item.color); }
+            }
+        ]
+    });
 
     dp.init();
 
@@ -117,6 +133,6 @@
 
 
 </script>
-</div>
+
 </body>
 </html>
