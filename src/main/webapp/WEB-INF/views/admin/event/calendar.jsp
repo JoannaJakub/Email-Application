@@ -123,7 +123,25 @@
                 icon: "icon icon-blue",
                 color: "#1066a8",
                 onClick: function(args) { updateColor(args.source, args.item.color); }
-            }
+            },
+            {
+                text: "Green",
+                icon: "icon icon-green",
+                color: "#6aa84f",
+                onClick: function(args) { updateColor(args.source, args.item.color); }
+            },
+            {
+                text: "Yellow",
+                icon: "icon icon-yellow",
+                color: "#f1c232",
+                onClick: function(args) { updateColor(args.source, args.item.color); }
+            },
+            {
+                text: "Red",
+                icon: "icon icon-red",
+                color: "#cc0000",
+                onClick: function(args) { updateColor(args.source, args.item.color); }
+            },
         ]
     });
 
