@@ -12,26 +12,23 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 
 
-@Controller
+@RestController
 public class EventController {
     public final EventRepository eventRepository;
 
     public EventController(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
     }
-
-    @GetMapping("/event")
-    public String event() {
-        eventRepository.findAll();
-        System.out.println(eventRepository.findAll());
-        return "admin/event/calendar";
+    @RequestMapping("/api")
+    @ResponseBody
+    String home() {
+        return "Welcome!";
     }
 
     @GetMapping("/api/events")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     Iterable<Event> events(@RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime start,
                            @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end) {
-        System.out.println("iiii"+eventRepository.findBetween(start, end));
         return eventRepository.findBetween(start, end);
     }
 

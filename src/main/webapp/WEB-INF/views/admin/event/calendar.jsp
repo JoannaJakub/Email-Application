@@ -149,6 +149,21 @@
 
     dp.events.load("/api/events");
 
+    function updateColor(e, color) {
+        var params = {
+            id: e.id(),
+            color: color
+        };
+        DayPilot.Http.ajax({
+            url: '/api/events/setColor',
+            data: params,
+            success: function (ajax) {
+                e.data.color = color;
+                dp.events.update(e);
+                dp.message("Color updated");
+            }
+        });
+    }
 
 </script>
 
