@@ -10,27 +10,31 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
-@RestController
+@Controller
 public class EventController {
     public final EventRepository eventRepository;
 
     public EventController(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
     }
-    @RequestMapping("/api")
-    @ResponseBody
-    String home() {
-        return "Welcome!";
+
+    @RequestMapping("/event")
+    public String home(){
+        return "admin/event/calendar";
     }
 
     @GetMapping("/api/events")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
-    Iterable<Event> events(@RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime start,
-                           @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end) {
-        return eventRepository.findBetween(start, end);
-    }
+    public List<Event> apiEvent(@RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime
+                                       start,
+                                @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end) {
+        System.out.println("to jest start" +start);
+            return eventRepository.findBetween(start, end);
+        }
+
 
     @PostMapping("/api/events/create")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
