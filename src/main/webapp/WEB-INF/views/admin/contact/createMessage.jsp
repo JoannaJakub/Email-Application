@@ -34,7 +34,6 @@
                     <div class="col-6 col-12-medium">
 
                         <!-- Form -->
-                        <h3>Form</h3>
 
                         <form:form method="post" action="sendSuccess"  modelAttribute="sendMessage">
                             <div class="row gtr-uniform">
@@ -47,9 +46,9 @@
                                 <!-- Break -->
                                 <div class="col-12">
                                     <ul class="actions">
-                                        <li><input type="submit" value="Add user" class="primary"/></li>
-                                        <li><a href="<c:url value="/messages"/>"
-                                               class="button large">Reset</a></li>
+                                        <li><input type="submit" value="Send" class="button large"/></li>
+                                        <li><a href="<c:url value="/allMessage"/>"
+                                               class="button large">Go back</a></li>
                                     </ul>
                                 </div>
                             </div>
