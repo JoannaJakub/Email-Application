@@ -5,6 +5,8 @@ import emailapp.repository.ContactRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -30,4 +32,18 @@ public class ContactController {
         contactRepository.save(contact);
         return "admin/contact/sendSuccess";
     }
+
+
+    @GetMapping(value = {"/messageDelete/{id}"})
+    public String messageDelete(@PathVariable long id) {
+        contactRepository.deleteById(id);
+        return "redirect:/allUsers";
+
+
+    }
+    @RequestMapping("/messageConfirmDelete")
+    public String messagerConfirmDelete() {
+        return "admin/contact/messageConfirmDelete";
+    }
+
 }
