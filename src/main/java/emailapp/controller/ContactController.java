@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 
 @Controller
@@ -22,10 +23,11 @@ public class ContactController {
 
 
     @RequestMapping("/sendMessage")
-    public String createUser(Model model) {
+    public String createMessage(Model model) {
         model.addAttribute("sendMessage", new Contact());
         return "admin/contact/createMessage";
     }
+
     @PostMapping(value = "/sendSuccess")
     public String sendSuccess(@Valid Contact contact) {
         contactRepository.save(contact);
@@ -41,7 +43,7 @@ public class ContactController {
 
     }
     @RequestMapping("/messageConfirmDelete")
-    public String messagerConfirmDelete() {
+    public String messageConfirmDelete() {
         return "admin/contact/messageConfirmDelete";
     }
 
@@ -49,5 +51,25 @@ public class ContactController {
     public String allMessage(Model model) {
         model.addAttribute("message", contactRepository.findAll());
         return "admin/contact/allMessages";
+    }
+
+    @GetMapping(value = {"/messageEdit/{id}"})
+    public String messageEditForm(@PathVariable long id, Model model) {
+        model.addAttribute("messageEdit", contactRepository.findById(id));
+        return "admin/contact/messageEdit";
+    }
+
+    @PostMapping(value = {"messageEdit/{id}"})
+    public String messageEditSave(@Valid Contact contact) {
+        contactRepository.save(contact);
+        return "redirect:/messageConfirmEditing/{id}";
+    }
+
+    @RequestMapping("/messageConfirmEditing/{id}")
+    public String messageConfirmEditing(@PathVariable long id, Model model) {
+        Optional<Contact> contact = contactRepository.findById(id);
+            model.addAttribute("messageConfirmEdit", contact);
+
+        return "admin/contact/messageConfirmEdit";
     }
 }
