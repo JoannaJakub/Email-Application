@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Message has been send successfully</title>
+    <title>Message Edit Success</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="<c:url value="../resources/distribution/assets/css/main.css"/>"/>
@@ -24,7 +24,7 @@
             <!-- Content -->
             <section>
                 <header class="main">
-                    <h1> You have successfully sent message!</h1>
+                    <h1>Message has been changed!</h1>
                 </header>
 
                 <!-- Elements -->
@@ -33,29 +33,39 @@
 
                     <div class="col-6 col-12-medium">
 
-                        <!-- Table -->
-                        <h3></h3>
+                        <!-- Form -->
+                        <h3>Form</h3>
 
-                        <h4></h4>
-                        <div class="table-wrapper">
-                            <form:form items="${sendMessage}" var="sendMessage">
-                            <table>
-                                <thead>
+                        <form:form method="post" items="${messageEditSuccess}" var="messageEditSuccess">
+                            <div class="row gtr-uniform">
                                 <tr>
-                                    <th>Message</th>
-                                    <th><c:out value="${sendMessage}"/></th>
+                                <div class="col-6 col-12-xsmall">
+                                    <td>ID</td>
+                                    <c:out value="${id}" />
+
+                                </div>
                                 </tr>
-                                </thead>
-                            </table>
+                                <tr>
+                                <div class="col-12">
+                                    <td>Name</td>
+                                    <c:out value="${messageEditSuccess}"/>
+                                </div>
+                                </tr>
+
+                                <!-- Break -->
                                 <div class="col-12">
                                     <ul class="actions">
-                                        <li><a href="<c:url value="/allMessage"/>" class="button primary large">All
-                                            message</a></li>
+                                        <li><a href="<c:url value="/messageEdit/${id}"/>"
+                                               class="button primary large">Edit this Message</a></li>
+                                        <li><a href="<c:url value="/allMessages"/>" class="button large">Back to all
+                                            messages</a></li>
 
                                     </ul>
                                 </div>
-                            </form:form>
-                        </div>
+                            </div>
+                        </form:form>
+
+
                     </div>
                 </div>
 

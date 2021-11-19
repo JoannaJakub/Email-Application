@@ -62,14 +62,13 @@ public class ContactController {
     @PostMapping(value = {"messageEdit/{id}"})
     public String messageEditSave(@Valid Contact contact) {
         contactRepository.save(contact);
-        return "redirect:/messageConfirmEditing/{id}";
+        return "redirect:/messageEditSuccess/{id}";
     }
 
-    @RequestMapping("/messageConfirmEditing/{id}")
-    public String messageConfirmEditing(@PathVariable long id, Model model) {
+    @RequestMapping("/messageEditSuccess/{id}")
+    public String messageEditSuccess(@PathVariable long id, Model model) {
         Optional<Contact> contact = contactRepository.findById(id);
-            model.addAttribute("messageConfirmEdit", contact);
-
-        return "admin/contact/messageConfirmEdit";
+        model.addAttribute("messageEditSuccess", contact);
+        return "admin/contact/messageEditSuccess";
     }
 }
