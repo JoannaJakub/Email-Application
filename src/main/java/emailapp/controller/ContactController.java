@@ -4,6 +4,7 @@ import emailapp.model.Contact;
 import emailapp.repository.ContactRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,13 +25,17 @@ public class ContactController {
 
     @RequestMapping("/sendMessage")
     public String createMessage(Model model) {
-        model.addAttribute("sendMessage", new Contact());
+        model.addAttribute("newMessage", new Contact());
         return "admin/contact/createMessage";
     }
 
     @PostMapping(value = "/sendSuccess")
-    public String sendSuccess(@Valid Contact contact) {
+    public String sendSuccess(@Valid Contact contact, BindingResult result,Model model) {
+        if (result.hasErrors()) {
+            return "admin/contact/createMessage";
+        }
         contactRepository.save(contact);
+        model.addAttribute("thisMessage",contact);
         return "admin/contact/sendSuccess";
     }
 

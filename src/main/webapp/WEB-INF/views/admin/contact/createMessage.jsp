@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Creating email</title>
+    <title>Send message</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="<c:url value="../resources/distribution/assets/css/main.css"/>"/>
@@ -35,12 +35,11 @@
 
                         <!-- Form -->
 
-                        <form:form method="post" action="sendSuccess"  modelAttribute="sendMessage">
+                        <form:form method="post" action="sendSuccess"  modelAttribute="newMessage">
                             <div class="row gtr-uniform">
                                 <div class="col-6 col-12-xsmall">
-                                    <form hidden="id"></form>
-                                    <form:input type="text" name="message" id="message" value="" placeholder="message" path="message"/>
-
+                                    <form:input type="text" name="message" id="message" placeholder="Message" path="message"/>
+                                    <form:errors path="message"/>
                                 </div>
 
                                 <!-- Break -->
