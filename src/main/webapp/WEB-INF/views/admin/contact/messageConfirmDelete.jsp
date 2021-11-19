@@ -34,7 +34,7 @@
                         <h1>Are you sure of removing message?</h1>
                         <div class="form-group row">
                             <div class="col-sm-9 ml-auto">
-                                <a href="<c:url value="/allMessage"/>"
+                                <a href="<c:url value="/allMessages"/>"
                                    class="button large" type="submit" >NO</a>
                                 <a href="<c:url value="/messageDelete/${param.id}"/>"
                                    class="button primary large" >YES, delete message</a>

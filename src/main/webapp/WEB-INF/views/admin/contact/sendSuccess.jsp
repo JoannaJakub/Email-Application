@@ -38,18 +38,18 @@
 
                         <h4></h4>
                         <div class="table-wrapper">
-                            <form:form items="${sendMessage}" var="sendMessage">
+                            <form:form items="${sendMessage}" var="thisMessage">
                             <table>
                                 <thead>
-                                <tr>
+
                                     <th>Message</th>
-                                    <th><c:out value="${sendMessage}"/></th>
-                                </tr>
+                                    <th><c:out value="${thisMessage.message}"/></th>
+
                                 </thead>
                             </table>
                                 <div class="col-12">
                                     <ul class="actions">
-                                        <li><a href="<c:url value="/allMessage"/>" class="button primary large">All
+                                        <li><a href="<c:url value="/allMessages"/>" class="button primary large">All
                                             message</a></li>
 
                                     </ul>
