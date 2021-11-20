@@ -28,12 +28,12 @@ public class ForgotPasswordController {
         this.forgetUserService = forgetUserService;
     }
 
-    @GetMapping("/forgot_password")
+    @GetMapping("/forgotPassword")
     public String showForgotPasswordForm() {
         return "main/forgotPassword";
     }
 
-    @PostMapping("/forgot_password")
+    @PostMapping("/forgotPassword")
     public String processForgotPassword(HttpServletRequest request, Model model) {
         String email = request.getParameter("email");
         String token = RandomString.make(30);
@@ -77,7 +77,7 @@ public class ForgotPasswordController {
         mailSender.send(message);
     }
 
-    @GetMapping("/reset_password")
+    @GetMapping("/resetPassword")
     public String showResetPasswordForm(@Param(value = "token") String token, Model model) {
         User user = forgetUserService.getByResetPasswordToken(token);
         model.addAttribute("token", token);
@@ -87,10 +87,10 @@ public class ForgotPasswordController {
             return "message";
         }
 
-        return "main/reset_password_form";
+        return "main/resetPasswordForm";
     }
 
-    @PostMapping("/reset_password")
+    @PostMapping("/resetPassword")
     public String processResetPassword(HttpServletRequest request, Model model) {
         String token = request.getParameter("token");
         String password = request.getParameter("password");

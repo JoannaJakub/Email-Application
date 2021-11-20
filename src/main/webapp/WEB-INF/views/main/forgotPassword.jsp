@@ -35,7 +35,7 @@
 
                         <!-- Form -->
 
-                        <form:form method="post" action="forgot_password" style="form-validate mb-4">
+                        <form:form method="post" action="forgotPassword" style="form-validate mb-4">
                             <div class="border border-secondary rounded p-3">
                                 <div>
                                     <p>We will be sending a reset password link to your email.</p>

@@ -35,7 +35,7 @@
 
                         <!-- Form -->
 
-                        <form:form action="reset_password" method="post"  style="form-validate mb-4">
+                        <form:form action="resetPassword" method="post"  style="form-validate mb-4">
                             <input type="hidden" name="token" value="${token}" />
                             <div class="border border-secondary rounded p-3">
                                 <div>
