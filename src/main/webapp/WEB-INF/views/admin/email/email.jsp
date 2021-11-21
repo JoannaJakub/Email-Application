@@ -40,10 +40,11 @@
                             <div class="row gtr-uniform">
                                 <div class="col-6 col-12-xsmall">
                                     <form:input type="text" name="firstName" id="firstName" value="" placeholder="Name" path="firstName"/>
-
+                                    <form:errors path="firstName"/>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
                                     <form:input type="text" name="lastName" id="lastName" value="" placeholder="Surname" path="lastName"/>
+                                    <form:errors path="lastName"/>
 
                                 </div>
                                 <!-- Break -->

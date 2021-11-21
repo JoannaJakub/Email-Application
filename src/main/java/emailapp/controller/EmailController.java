@@ -38,20 +38,25 @@ public class EmailController {
         return "AZCompany";
     }
 
+    private Email returnEmail(@Valid Email email) {
+        String firstName = email.getFirstName().toLowerCase();
+        String lastName = email.getLastName().toLowerCase();
+        String department = email.getDepartment().getShortName().toLowerCase();
+        String company = companyName().toLowerCase();
+        email.setGeneratedEmail(firstName + "." + lastName + "@" + department + "." + company + ".com");
+        return email;
+    }
+
     @PostMapping(value = "/emailSuccess")
     public String processRegister(@Valid Email email, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "admin/email/email";
         }
-            email.setPassword(randomPasswordGenerator.generatePassword());
-            String firstName = email.getFirstName().toLowerCase();
-            String lastName = email.getLastName().toLowerCase();
-            String department = email.getDepartment().getShortName().toLowerCase();
-            String company = companyName().toLowerCase();
-            email.setGeneratedEmail(firstName + "." + lastName + "@" + department + "." + company + ".com");
-            emailRepository.save(email);
-            model.addAttribute("userDetails", emailRepository.findTopByOrderByIdDesc());
-            return "admin/email/emailSuccess";
+        email.setPassword(randomPasswordGenerator.generatePassword());
+        returnEmail(email);
+        emailRepository.save(email);
+        model.addAttribute("userDetails", emailRepository.findTopByOrderByIdDesc());
+        return "admin/email/emailSuccess";
 
     }
 
