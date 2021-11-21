@@ -34,10 +34,11 @@
                         <h1>Are you sure of removing user?</h1>
                         <div class="form-group row">
                             <div class="col-sm-9 ml-auto">
-                                <a href="<c:url value="/allEmails"/>"
-                                   class="button large" type="submit" >NO</a>
                                 <a href="<c:url value="/emailDelete/${param.id}"/>"
                                    class="button primary large" >YES, delete email</a>
+                                <a href="<c:url value="/allEmails"/>"
+                                   class="button large" type="submit" >NO</a>
+
                             </div>
                         </div>
 

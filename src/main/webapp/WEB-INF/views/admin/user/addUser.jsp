@@ -82,8 +82,7 @@
                                 <!-- Break -->
                                 <div class="col-12">
                                     <ul class="actions">
-                                        <li><input type="submit" value="Send Message" class="primary"/></li>
-                                        <li><input type="reset" value="Reset"/></li>
+                                        <li><input type="submit" value="Add user" class="button primary large"/></li>
                                     </ul>
                                 </div>
                             </div>

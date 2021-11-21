@@ -24,7 +24,7 @@
             <!-- Content -->
             <section>
                 <header class="main">
-                    <h1>Generate new password</h1>
+                    <h1>Generate new password for the user</h1>
                 </header>
 
                 <!-- Elements -->
@@ -46,38 +46,17 @@
                                     <c:out value="${generateNewPassword}"/>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
-                                    <c:out value="${generateNewPassword}"/>
+                                    <c:out value="${firstName}"/>
                                 </div>
                                 <div class="col-6 col-12-xsmall">
                                     <form:input type="text" name="password" id="password" value="" placeholder="password" path="password"/>
                                 </div>
                                 <!-- Break -->
-                                <div class="col-4 col-12-small">
-                                    <input type="radio" id="demo-priority-low" name="demo-priority" checked>
-                                    <label for="demo-priority-low">Low</label>
-                                </div>
-                                <div class="col-4 col-12-small">
-                                    <input type="radio" id="demo-priority-normal" name="demo-priority">
-                                    <label for="demo-priority-normal">Normal</label>
-                                </div>
-                                <div class="col-4 col-12-small">
-                                    <input type="radio" id="demo-priority-high" name="demo-priority">
-                                    <label for="demo-priority-high">High</label>
-                                </div>
-                                <!-- Break -->
-                                <div class="col-6 col-12-small">
-                                    <input type="checkbox" id="demo-copy" name="demo-copy">
-                                    <label for="demo-copy">Email me a copy</label>
-                                </div>
-                                <div class="col-6 col-12-small">
-                                    <input type="checkbox" id="demo-human" name="demo-human" checked>
-                                    <label for="demo-human">I am a human</label>
-                                </div>
-                                <!-- Break -->
                                 <div class="col-12">
                                     <ul class="actions">
-                                        <li><input type="submit" value="Send Message" class="primary"/></li>
-                                        <li><input type="reset" value="Reset"/></li>
+                                        <li><input type="submit" value="Confirm new password" class="button primary large"/></li>
+                                        <a href="<c:url value="/allEmails"/>"
+                                           class="button large" type="submit" >Back</a>
                                     </ul>
                                 </div>
                             </div>

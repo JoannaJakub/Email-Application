@@ -76,9 +76,7 @@
                                 <!-- Break -->
                                 <div class="col-12">
                                     <ul class="actions">
-                                        <li><input type="submit" value="Add user" class="primary"/></li>
-                                        <li><a href="<c:url value="/email"/>"
-                                               class="button large">Reset</a></li>
+                                        <li><input type="submit" value="Add email" class="button primary large"/></li>
                                     </ul>
                                 </div>
                             </div>

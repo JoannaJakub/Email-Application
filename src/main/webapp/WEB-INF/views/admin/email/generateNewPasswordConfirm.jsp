@@ -75,8 +75,10 @@
                                 <!-- Break -->
                                 <div class="col-12">
                                     <ul class="actions">
-                                        <li><input type="submit" value="Send Message" class="primary"/></li>
-                                        <li><input type="reset" value="Reset"/></li>
+                                        <a href="<c:url value="/generateNewPassword/${newPassword.id}"/>"
+                                           class="button primary large" type="submit" >Generate password again</a>
+                                        <a href="<c:url value="/allEmails"/>"
+                                           class="button large" type="submit" >All emails</a>
                                     </ul>
                                 </div>
                             </div>
