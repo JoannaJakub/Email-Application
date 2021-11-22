@@ -86,8 +86,9 @@
                                 <!-- Break -->
                                 <div class="col-12">
                                     <ul class="actions">
-                                        <li><input type="submit" value="Update" class="primary"/></li>
-                                        <li><input type="reset" value="Back"/></li>
+                                        <li><input type="submit" value="Update" class="button primary large"/></li>
+                                        <a href="<c:url value="/allUsers"/>"
+                                           class="button large" type="submit" >Back</a>
                                     </ul>
                                 </div>
                             </div>

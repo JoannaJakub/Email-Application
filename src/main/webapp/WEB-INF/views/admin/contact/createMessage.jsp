@@ -45,7 +45,7 @@
                                 <!-- Break -->
                                 <div class="col-12">
                                     <ul class="actions">
-                                        <li><input type="submit" value="Send" class="button large"/></li>
+                                        <li><input type="submit" value="Send" class="button primary large"/></li>
                                         <li><a href="<c:url value="/allMessage"/>"
                                                class="button large">Go back</a></li>
                                     </ul>

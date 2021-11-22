@@ -54,8 +54,9 @@
                                 <!-- Break -->
                                 <div class="col-12">
                                     <ul class="actions">
-                                        <li><input type="submit" value="New password" class="primary"/></li>
-                                        <li><input type="reset" value="Back to all users"/></li>
+                                        <li><input type="submit" value="New password" class="button primary large"/></li>
+                                        <li><a href="<c:url value="/allUsers"/>" class="button large">Back to all
+                                            users</a></li>
                                     </ul>
                                 </div>
                             </div>
