@@ -29,9 +29,21 @@
 
                     <div class="col-6 col-12-medium">
 
-                        <!-- Table -->
-                        <h3>Message</h3>
+                        <h3>Messages</h3>
 
+                        <!-- Filter -->
+                        <form:form action="allMessages">
+                            Filter: <input type="text" name="keyword" id="keyword" size="50" value="${keyword}" required />
+                            <input type="submit" value="Search" />
+                            <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+                        </form:form>
+                        <script type="text/javascript">
+                            function clearSearch() {
+                                window.location = "/allMessages";
+                            }
+                        </script>
+
+                        <!-- Table -->
                         <div class="table-responsive">
                             <table>
                                 <thead>

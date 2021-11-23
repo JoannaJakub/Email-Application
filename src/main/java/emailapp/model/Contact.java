@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
@@ -28,5 +27,5 @@ public class Contact {
     @NotEmpty(message = "Please enter your message.")
     private String message;
     @UpdateTimestamp
-    private LocalDateTime updateDate;
+    private LocalDateTime date;
 }

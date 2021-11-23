@@ -2,6 +2,7 @@ package emailapp.controller;
 
 import emailapp.model.Contact;
 import emailapp.repository.ContactRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -54,8 +56,10 @@ public class ContactController {
     }
 
     @RequestMapping("/allMessages")
-    public String allMessage(Model model) {
-        model.addAttribute("message", contactRepository.findAll());
+    public String allMessage(Model model, @Param("keyword") String keyword) {
+        List<Contact> listMessage = listAll(keyword);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("message", listMessage);
         return "admin/contact/allMessages";
     }
 
@@ -76,5 +80,12 @@ public class ContactController {
         Optional<Contact> contact = contactRepository.findById(id);
         model.addAttribute("messageEditSuccess", contact);
         return "admin/contact/messageEditSuccess";
+    }
+
+    public List<Contact> listAll(String keyword) {
+        if (keyword != null) {
+            return contactRepository.search(keyword);
+        }
+        return contactRepository.findAll();
     }
 }
