@@ -23,7 +23,7 @@ public class ContactController {
     }
 
 
-    @RequestMapping("/sendMessage")
+ @RequestMapping("/sendMessage")
     public String createMessage(Model model) {
         model.addAttribute("newMessage", new Contact());
         return "admin/contact/createMessage";
@@ -33,10 +33,11 @@ public class ContactController {
     public String sendSuccess(@Valid Contact contact, BindingResult result,Model model) {
         if (result.hasErrors()) {
             return "admin/contact/createMessage";
+        } else {
+            contactRepository.save(contact);
+            model.addAttribute("thisMessage", contact);
+            return "admin/contact/sendSuccess";
         }
-        contactRepository.save(contact);
-        model.addAttribute("thisMessage",contact);
-        return "admin/contact/sendSuccess";
     }
 
 
