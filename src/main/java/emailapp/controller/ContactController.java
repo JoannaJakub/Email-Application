@@ -34,6 +34,7 @@ public class ContactController {
     @PostMapping(value = "/sendSuccess")
     public String sendSuccess(@Valid Contact contact, BindingResult result,Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("newMessage", new Contact());
             return "admin/contact/createMessage";
         } else {
             contactRepository.save(contact);

@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Message has been send successfully</title>
+    <title>Message has been sent successfully</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="<c:url value="../resources/distribution/assets/css/main.css"/>"/>
@@ -38,7 +38,7 @@
 
                         <h4></h4>
                         <div class="table-wrapper">
-                            <form:form items="${sendMessage}" var="thisMessage">
+                            <form:form items="${thisMessage}" var="thisMessage">
                             <table>
                                 <thead>
 

@@ -36,7 +36,7 @@
                         <!-- Form -->
                         <h3>Form</h3>
 
-                        <form:form method="post" action="sendSuccess1"  modelAttribute="sendMessage1">
+                        <form:form method="post" action="sendSuccess11"  modelAttribute="sendMessage11">
                             <div class="row gtr-uniform">
                                 <div class="col-6 col-12-xsmall">
                                     <form hidden="id"></form>

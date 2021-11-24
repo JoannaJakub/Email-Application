@@ -35,10 +35,11 @@
 
                         <!-- Form -->
 
-                        <form:form action="sendSuccess"  method="post" modelAttribute="newMessage">
-                            <div class="row gtr-uniform">
+                        <form:form  method="post"  action="sendSuccess" modelAttribute="newMessage">
+
+                        <div class="row gtr-uniform">
                                 <div class="col-6 col-12-xsmall">
-                                    <form:input type="text" name="message"  class="form-control" id="message" placeholder="Message" path="message"/>
+                                    <form:input type="text" name="name"  id="name" placeholder="Message" path="message"/>
                                     <form:errors path="message"/>
                                 </div>
 
@@ -56,7 +57,6 @@
 
                     </div>
                 </div>
-
             </section>
 
         </div>
