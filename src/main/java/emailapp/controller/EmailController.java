@@ -1,9 +1,11 @@
 package emailapp.controller;
 
 import emailapp.RandomPasswordGenerator;
+import emailapp.model.Contact;
 import emailapp.model.Email;
 import emailapp.repository.DepartmentRepository;
 import emailapp.repository.EmailRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -61,8 +64,10 @@ public class EmailController {
     }
 
     @RequestMapping("/allEmails")
-    public String allUsers(Model model) {
-        model.addAttribute("users", emailRepository.findAll());
+    public String allUsers(Model model, @Param("keyword") String keyword) {
+        List<Email> listEmail = listAll(keyword);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("users", listEmail);
         return "admin/email/allEmails";
     }
 
@@ -124,5 +129,12 @@ public class EmailController {
             return "admin/email/adminError";
         }
         return "admin/email/generateNewPasswordConfirm";
+    }
+
+    public List<Email> listAll(String keyword) {
+        if (keyword != null) {
+            return emailRepository.search(keyword);
+        }
+        return emailRepository.findAll();
     }
 }

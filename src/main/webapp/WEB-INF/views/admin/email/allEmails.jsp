@@ -31,6 +31,17 @@
 
                         <!-- Table -->
                         <h3>Users</h3>
+                        <!-- Filter -->
+                        <form:form action="allEmails">
+                            Filter: <input type="text" name="keyword" id="keyword" size="50" value="${keyword}" required />
+                            <input type="submit" value="Search" />
+                            <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+                        </form:form>
+                        <script type="text/javascript">
+                            function clearSearch() {
+                                window.location = "/allEmails";
+                            }
+                        </script>
 
                         <div class="table-responsive">
                             <table>
