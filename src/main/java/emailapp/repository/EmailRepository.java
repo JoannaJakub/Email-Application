@@ -12,7 +12,7 @@ public interface EmailRepository extends JpaRepository<Email, Long> {
     Email findTopByOrderByIdDesc();
     Email findByGeneratedEmail(String GeneratedEmail);
 
-    @Query( value ="SELECT * FROM email p WHERE CONCAT(p.id, p.first_name, p.last_name, p.password, p.generated_email, p.mailbox_capacity) LIKE %?1%",
+    @Query( value ="SELECT DISTINCT * FROM email p JOIN user_department u  ON p.id = u.email_id WHERE CONCAT(p.id, p.first_name, p.last_name, p.password, p.generated_email, p.mailbox_capacity, u.department_id) LIKE %?1%",
             nativeQuery = true)
     List<Email> search(String keyword);
 }
