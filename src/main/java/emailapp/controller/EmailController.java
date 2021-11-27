@@ -68,8 +68,6 @@ public class EmailController {
         List<Email> listEmail = listAll(keyword);
         model.addAttribute("keyword", keyword);
         model.addAttribute("users", listEmail);
-        System.out.println(keyword);
-        System.out.println(listEmail);
         return "admin/email/allEmails";
     }
 

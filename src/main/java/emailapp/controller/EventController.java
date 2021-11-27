@@ -6,6 +6,7 @@ import emailapp.model.Event;
 import emailapp.repository.EventRepository;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
@@ -28,12 +29,18 @@ public class EventController {
 
     @GetMapping("/api/events")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
-    public List<Event> apiEvent(@RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime
+    public List<Event> allEvent(Model model, @RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime
+            start, @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end){
+      model.addAttribute("start", start);
+      model.addAttribute("end",  end);
+
+  /*List<Event> apiEvent(@RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime
                                        start,
                                 @RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime end) {
-        System.out.println("to jest start" +start);
+        System.out.println("to jest start" +start);*/
             return eventRepository.findBetween(start, end);
         }
+
 
 
     @PostMapping("/api/events/create")
