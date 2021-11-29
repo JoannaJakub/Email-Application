@@ -11,4 +11,6 @@ public class VideoConst {
     public static final String BYTES = "bytes";
     public static final int BYTE_RANGE = 1024;
 
+    private VideoConst() {
+    }
 }
