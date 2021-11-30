@@ -1,7 +1,6 @@
 package emailapp.controller;
 
 import emailapp.RandomPasswordGenerator;
-import emailapp.model.Email;
 import emailapp.model.Role;
 import emailapp.model.User;
 import emailapp.repository.EmailRepository;
@@ -45,9 +44,7 @@ public class UsersController {
     public String allUsersAdmin(Model model,@Param("keyword") String keyword) {
         List<User> listUser = listAll(keyword);
         model.addAttribute("keyword", keyword);
-        model.addAttribute("allUsers1", listUser);
-        System.out.println(keyword);
-        System.out.println(listUser);
+        model.addAttribute("allUsers1", listUser);;
         return "admin/user/allUsers";
     }
 

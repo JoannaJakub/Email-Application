@@ -1,7 +1,6 @@
 package emailapp.controller;
 
 import emailapp.RandomPasswordGenerator;
-import emailapp.model.Contact;
 import emailapp.model.Email;
 import emailapp.repository.DepartmentRepository;
 import emailapp.repository.EmailRepository;

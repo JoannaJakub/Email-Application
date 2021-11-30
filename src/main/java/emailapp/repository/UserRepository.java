@@ -1,6 +1,5 @@
 package emailapp.repository;
 
-import emailapp.model.Contact;
 import emailapp.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
