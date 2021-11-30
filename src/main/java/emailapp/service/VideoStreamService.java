@@ -23,8 +23,30 @@ import static emailapp.VideoConst.*;
 public class VideoStreamService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    public byte[] readByteRange(String filename, long start, long end) throws IOException {
+        Path path = Paths.get(getFilePath(), filename);
+        System.out.println(path);
+        try (InputStream inputStream = (Files.newInputStream(path));
+             ByteArrayOutputStream bufferedOutputStream = new ByteArrayOutputStream()) {
+            byte[] data = new byte[BYTE_RANGE];
+            int nRead;
+            while ((nRead = inputStream.read(data, 0, data.length)) != -1) {
+                bufferedOutputStream.write(data, 0, nRead);
+            }
+            bufferedOutputStream.flush();
+            System.out.println(bufferedOutputStream);
+
+            byte[] result = new byte[(int) (end - start) + 1];
+            System.arraycopy(bufferedOutputStream.toByteArray(), (int) start, result, 0, result.length);
+            System.out.println("START" + start);
+
+            return result;
+        }
+    }
+
     private String getFilePath() {
         URL url = this.getClass().getResource(VIDEO);
+        System.out.println(VIDEO);
         return new File(url.getFile()).getAbsolutePath();
     }
 
