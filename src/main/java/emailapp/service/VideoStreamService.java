@@ -23,6 +23,31 @@ import static emailapp.VideoConst.*;
 public class VideoStreamService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+
+    public ResponseEntity<byte[]> prepareContent(String fileName, String fileType, String range) {
+        long rangeStart = 0;
+        long rangeEnd;
+        byte[] data;
+        Long fileSize;
+        String fullFileName = fileName + "." + fileType;
+
+        fileSize = getFileSize(fullFileName);
+        if (range == null) {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .header(CONTENT_TYPE, VIDEO_CONTENT + fileType)
+                    .header(CONTENT_LENGTH, String.valueOf(fileSize))
+                    .body(readByteRange(fullFileName, rangeStart, fileSize - 1)); // Read the object and convert it as bytes
+        }
+        String[] ranges = range.split("-");
+        rangeStart = Long.parseLong(ranges[0].substring(6));
+
+        data = readByteRange(fullFileName, rangeStart, rangeEnd);
+
+        return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT);
+
+
+    }
+
     public byte[] readByteRange(String filename, long start, long end) throws IOException {
         Path path = Paths.get(getFilePath(), filename);
         System.out.println(path);
