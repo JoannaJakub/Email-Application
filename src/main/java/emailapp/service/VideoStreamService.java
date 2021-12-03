@@ -30,19 +30,22 @@ public class VideoStreamService {
         byte[] data;
         Long fileSize;
         String fullFileName = fileName + "." + fileType;
-
-        fileSize = getFileSize(fullFileName);
-        if (range == null) {
-            return ResponseEntity.status(HttpStatus.OK)
-                    .header(CONTENT_TYPE, VIDEO_CONTENT + fileType)
-                    .header(CONTENT_LENGTH, String.valueOf(fileSize))
-                    .body(readByteRange(fullFileName, rangeStart, fileSize - 1)); // Read the object and convert it as bytes
+        try {
+            fileSize = getFileSize(fullFileName);
+            if (range == null) {
+                return ResponseEntity.status(HttpStatus.OK)
+                        .header(CONTENT_TYPE, VIDEO_CONTENT + fileType)
+                        .header(CONTENT_LENGTH, String.valueOf(fileSize))
+                        .body(readByteRange(fullFileName, rangeStart, fileSize - 1)); // Read the object and convert it as bytes
+            }
+            System.out.println("content length" +  CONTENT_LENGTH);
+            String[] ranges = range.split("-");
+            rangeStart = Long.parseLong(ranges[0].substring(6));
+        } catch (IOException e) {
+            logger.error("Exception while reading the file {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        String[] ranges = range.split("-");
-        rangeStart = Long.parseLong(ranges[0].substring(6));
-
-        data = readByteRange(fullFileName, rangeStart, rangeEnd);
-
+        String contentLength = String.valueOf((rangeEnd - rangeStart) + 1);
         return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT);
 
 
@@ -50,7 +53,6 @@ public class VideoStreamService {
 
     public byte[] readByteRange(String filename, long start, long end) throws IOException {
         Path path = Paths.get(getFilePath(), filename);
-        System.out.println(path);
         try (InputStream inputStream = (Files.newInputStream(path));
              ByteArrayOutputStream bufferedOutputStream = new ByteArrayOutputStream()) {
             byte[] data = new byte[BYTE_RANGE];
@@ -59,19 +61,14 @@ public class VideoStreamService {
                 bufferedOutputStream.write(data, 0, nRead);
             }
             bufferedOutputStream.flush();
-            System.out.println(bufferedOutputStream);
-
             byte[] result = new byte[(int) (end - start) + 1];
             System.arraycopy(bufferedOutputStream.toByteArray(), (int) start, result, 0, result.length);
-            System.out.println("START" + start);
-
             return result;
         }
     }
 
     private String getFilePath() {
         URL url = this.getClass().getResource(VIDEO);
-        System.out.println(VIDEO);
         return new File(url.getFile()).getAbsolutePath();
     }
 

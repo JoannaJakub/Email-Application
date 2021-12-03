@@ -19,8 +19,9 @@ public class VideoStreamController {
     }
 
     @GetMapping("/{fileType}/{fileName}")
-    public Mono<ResponseEntity<byte[]>> streamVideo(@PathVariable("fileType") String fileType,
+    public Mono<ResponseEntity<byte[]>> streamVideo( @RequestHeader(value = "Range", required = false) String httpRangeList,
+                                                    @PathVariable("fileType") String fileType,
                                                     @PathVariable("fileName") String fileName) {
-        return Mono.just(videoStreamService.prepareContent(fileName, fileType));
+        return Mono.just(videoStreamService.prepareContent(fileName, fileType, httpRangeList));
     }
 }
