@@ -41,11 +41,21 @@ public class VideoStreamService {
             System.out.println("content length" +  CONTENT_LENGTH);
             String[] ranges = range.split("-");
             rangeStart = Long.parseLong(ranges[0].substring(6));
+            if (ranges.length > 1) {
+                rangeEnd = Long.parseLong(ranges[1]);
+
+            } else {
+                rangeEnd = fileSize - 1;
+                        }
+            if (fileSize < rangeEnd) {
+                rangeEnd = fileSize - 1;
+
+            }
+            data = readByteRange(fullFileName, rangeStart, rangeEnd);
         } catch (IOException e) {
             logger.error("Exception while reading the file {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-        String contentLength = String.valueOf((rangeEnd - rangeStart) + 1);
         return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT);
 
 
